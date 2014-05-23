@@ -1,0 +1,113 @@
+/*@IMPORT url("formulario.css");*/
+@IMPORT url("form.css");
+/*@IMPORT url("structure.css");*/
+
+* {
+	font-family: Tahoma, Arial;
+}
+
+body {
+	font-family: Tahoma, Arial;
+	background: #B63C00 url(img/bgUrbanauta.png) center center repeat-y;
+	margin: 0px;
+	width: 800px;
+	margin: 0px auto;
+	font-family: arial;
+	font-size: 12px;
+}
+
+#header {
+	border: 0px solid #F00;
+	border-left: 0;
+	border-right: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	height: 115px;
+	background: #B63C00 url(img/bgHeader.png);
+}
+
+#header img#grafx {
+	margin-top: 0px;
+	margin-left: 15px;
+	float: left;
+}
+
+#header img#name {
+	margin-top: 30px;
+	margin-right: 155px;
+	float: right;
+}
+
+#navBar {
+	padding: 6px;
+	background-color: #000;
+	color: #F1B500;
+	font-family: arial;
+	font-weight: bold;
+	padding-left: 185px;
+	text-align: center;
+}
+
+#navBar a {
+	color: #F1B500;
+	text-decoration: none;
+}
+
+#navBar a:hover {
+	color: #FFF;
+	/*text-decoration:underline;*/
+}
+
+#leftCol {
+	width: 155px;
+	height: 505px;
+	border: 0px solid #F00;
+	margin-top: 25px;
+	margin-left: 12px;
+	float: left;
+	clear: left;
+}
+
+#rightCol {
+	width: 600px;
+	height: 505px;
+	border: 0px solid #F00;
+	margin-top: 25px;
+	margin-left: 12px;
+	float: right;
+	margin-right: 12px;
+}
+
+#rightCol h1 {
+	font-weight: bold;
+	margin: 0px;
+	font-family: tahoma;
+	font-size: 18px;
+}
+
+#rightCol hr {
+	margin: 0px;
+	border: 2px solid #F1B500;
+}
+
+#rightCol p img {
+	float: right;
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
+
+.bannerTop {
+	margin: 0px auto;
+	float: right;
+	top: 15px;
+	right: 130px;
+	position: relative;
+}
+
+.ali-esq {
+	text-align: left;
+}
+
+.ali-dir {
+	text-align: right;
+}

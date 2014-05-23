@@ -1,0 +1,24 @@
+label {
+	width: 200px;
+	position: relative;
+	text-align: right;
+	float: left;
+	clear: right;
+	vertical-align: top;
+	margin-right: 5px;
+}
+
+fieldset {
+	margin: 10px;
+	text-align: left;
+}
+
+form {
+	text-align: left;
+}
+
+form input,form textarea,form select {
+	text-align: left;
+	position: relative;
+	width: 40%;
+}
