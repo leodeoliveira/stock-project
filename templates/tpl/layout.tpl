@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
 <head>
 	<!-- META -->
-	<TITLE>{#titulo#}</TITLE>
+	<title>{#titulo#}</title>
 
-	<META NAME="title" CONTENT="{#titulo#}" />
-	<META NAME="description" CONTENT="{#descricao#}" />
-	<META NAME="keywords" CONTENT="{#palavra_chave#}" />
-	<META NAME="generator" CONTENT="{#generator#}" />
-	<META NAME="author" CONTENT="{#autor#}" />
+	<meta name="title" content="{#titulo#}" />
+	<meta name="description" content="{#descricao#}" />
+	<meta name="keywords" content="{#palavra_chave#}" />
+	<meta name="generator" content="{#generator#}" />
+	<meta name="author" content="{#autor#}" />
 
 	<meta name="resource-type" content="document" />
 	<meta name="revisit-after" content="1" />
