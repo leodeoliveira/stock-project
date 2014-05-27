@@ -20,9 +20,6 @@ switch ($_REQUEST["ext"]) {
 		header("Content-type: text/javascript");
 		include("lib/scripts/" . $_REQUEST["arquivo"] . ".".$_REQUEST["ext"] );
 		break;
-	case "put":
-		include("controller/put.php");
-		break;
 	default:
 		include("controller/default.php");
 		break;

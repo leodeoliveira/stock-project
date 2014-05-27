@@ -19,10 +19,10 @@ switch ($_REQUEST["ext"]) {
 			$message = $e->getMessage();
 		}
 	default:
-		if(isset($_SESSION)) {
+		/* if(isset($_SESSION)) {
 			$setup->pagina(true,$setup->smarty->fetch("index.tpl"));
 			die();
-		}
+		} */
 		$setup->smarty->assign("include_menu", false);
 		ob_get_clean();
 		$setup->smarty->assign("message", $message);
