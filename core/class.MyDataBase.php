@@ -63,7 +63,7 @@ class MyDataBase {
 	 * @access public
 	 * @param string $sql String contendo o valor da consulta.
 	 * @param int $pagg nº de registros por página, 0 para sem paginação.
-	 * @return Query
+	 * @return MyQuery
 	 * @since 19/07/2005
 	 * @version 1.0
 	 */
@@ -79,7 +79,7 @@ class MyDataBase {
 			}
 		} else $page=0;
 		//tirar echo $sql;
-		$data = new MyQuery(mysqli_query($sql, $this->conn),$pagg,$page);
+		$data = new MyQuery(mysqli_query($this->conn, $sql),$pagg,$page);
 		return $data;
 		unset($data);
 	}
@@ -98,7 +98,8 @@ class MyDataBase {
 		$sql_insert = "(";
 		$sql_values = "(";
 		foreach ($conteudo as $campo => $valor) $sql_select .= "$campo,";
-		$data = new MyQuery(mysqli_query("SELECT FIRST 1 ".substr($sql_select,0,-1)." FROM $tabela",$this->conn),0,0);
+		$result = mysqli_query($this->conn, "SELECT ".substr($sql_select,0,-1)." FROM $tabela LIMIT 1");
+		$data = new MyQuery($result,0,0);
 		foreach ($conteudo as $campo => $valor) {
 			$info = $data->getColInfo($campo);
 
@@ -161,8 +162,8 @@ class MyDataBase {
 				$blobids .= '$sql_blob['.$u.'], ';
 			}
 			$blobids = substr($blobids,0,-2);
-			eval("ibase_query(\$this->conn, \$sql, $blobids);");
-		} else ibase_query($this->conn, $sql);
+			eval("mysqli_query(\$this->conn, \$sql, $blobids);");
+		} else mysqli_query($this->conn, $sql);
 	}
 
 	/**

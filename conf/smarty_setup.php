@@ -59,9 +59,13 @@ function comboPlus ($pars) {
 					'</script>' : null;
 	return $output;
 }
+
+/**
+ * @author Anderson JordÃ£o Marques
+ */
 class smarty_setup extends Smarty {
 	function smarty_setup() {
-		// Construtor da Classe. Estes automaticamente são definidos a cada nova instância.
+		// Construtor da Classe. Estes automaticamente sï¿½o definidos a cada nova instï¿½ncia.
 		parent::__construct(); 
 
 		$this->template_dir = SMARTY_TPL_DIR.'/';
@@ -74,7 +78,7 @@ class smarty_setup extends Smarty {
 
 		$this->registerPlugin("function", "combo_plus","comboPlus");
 
-		//não comentar esta linha, afeta no funcionamento do sistema.
+		//nï¿½o comentar esta linha, afeta no funcionamento do sistema.
 		$this->clearAllCache();
 		$this->clearCompiledTemplate();
 	}

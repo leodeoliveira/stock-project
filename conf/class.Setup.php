@@ -10,15 +10,15 @@ require_once("core/class.Util.php");
 require_once("core/class.UI.php");
 
 /**
- * Classe que contém a configuração padrão da aplicação WEB.
+ * Classe que contï¿½m a configuraï¿½ï¿½o padrï¿½o da aplicaï¿½ï¿½o WEB.
  *
  * Esta classe inicia e instancia os objetos.
- * Com base nessa classe, todas as outras funções do site trabalham.
- * Aqui são instanciados os objetos "DEFAULT" para a aplicação.
+ * Com base nessa classe, todas as outras funï¿½ï¿½es do site trabalham.
+ * Aqui sï¿½o instanciados os objetos "DEFAULT" para a aplicaï¿½ï¿½o.
  *
  * @access public
  * @author Leonardo Cidral <lcidral@gmail.com>
- * @author Anderson Jordão Marques <ajm@urbanauta.com.br>
+ * @author Anderson Jordï¿½o Marques <ajm@urbanauta.com.br>
  * @copyright Copyright &copy; 2006-2008, Portal Urbanauta LTDA.
  * @package CMW KAVO 2.0
  * @since 1.1 - 31/07/2006
@@ -30,8 +30,14 @@ class Setup {
 	private $script_end = null;
 	private $elapsed_time = null;
 
-	//CORE
+	/**
+	 * @var smarty_setup
+	 */
 	public $smarty;
+	
+	/**
+	 * @var MyDataBase
+	 */
 	public $conn;
 	public $crypto;
 	public $auth;
@@ -44,11 +50,11 @@ class Setup {
 	private $css = array();
 
 	/**
-	 * Método construtor da Classe.
+	 * Mï¿½todo construtor da Classe.
 	 *
 	 * Inicia a contagem para medir a performance, e
-	 * declara jssrc. Declara e atribuí a variável PATH
-	 * com o caminho relativo da aplicação.
+	 * declara jssrc. Declara e atribuï¿½ a variï¿½vel PATH
+	 * com o caminho relativo da aplicaï¿½ï¿½o.
 	 * @todo Aqui devem ser instanciados os objetos DEFAULT. ex: DataBase, DateTime.
 	 * @version 1.0
 	 * @since 1.0 - 24/07/2006
@@ -95,21 +101,21 @@ class Setup {
 
 
 	/**
-	 * Esta função recebe os elementos, e mostra uma página com layout predefinido em layout.tpl
+	 * Esta funï¿½ï¿½o recebe os elementos, e mostra uma pï¿½gina com layout predefinido em layout.tpl
 	 *
-	 * função pagina recebe como parametro obrigatório o conteúdo, e como
-	 * parâmetros adicionais mais estilos CSS especificos, JS adicionais e
-	 * um valor booleano indicando a indexação por robôs de busca
-	 * (false para não indexar, valor padrão)
+	 * funï¿½ï¿½o pagina recebe como parametro obrigatï¿½rio o conteï¿½do, e como
+	 * parï¿½metros adicionais mais estilos CSS especificos, JS adicionais e
+	 * um valor booleano indicando a indexaï¿½ï¿½o por robï¿½s de busca
+	 * (false para nï¿½o indexar, valor padrï¿½o)
 	 *
 	 * @version 1.1
 	 * @since 1.0 - 24/07/2006
-	 * @param resource tpl/html $ds_conteudo Conteúdo da página. Obrigatório.
-	 * @param bool $indexa indica a indexação por robôs de busca, false (não indexar)/true(indexa). DEFAULT false.
+	 * @param resource tpl/html $ds_conteudo Conteï¿½do da pï¿½gina. Obrigatï¿½rio.
+	 * @param bool $indexa indica a indexaï¿½ï¿½o por robï¿½s de busca, false (nï¿½o indexar)/true(indexa). DEFAULT false.
 	 */
 	function pagina($indexa=false,$conteudo) {
 		if (!isset($_POST["arquivo"])) {
-			//Informa se é para os robôs de busca estas paginas ou não
+			//Informa se ï¿½ para os robï¿½s de busca estas paginas ou nï¿½o
 			$this->smarty->assign("indexa",$indexa);
 
 			//data de hoje
@@ -186,7 +192,7 @@ class Setup {
 	}
 
 
-	//MEDE O TEMPO DE CARREGAMENTO DA PÁGINA
+	//MEDE O TEMPO DE CARREGAMENTO DA Pï¿½GINA
 	function performance_start() {
 		list($usec, $sec) = explode(" ", microtime());
 		$this->script_start = (float) $sec + (float) $usec;

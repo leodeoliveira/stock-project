@@ -11,7 +11,7 @@ error_reporting(E_ALL);
  *
  * Automatic generated with ArgoUML 0.22.beta2 on 19.07.2006, 13:30:09
  *
- * @author Anderson Jordão Marques <ajm@urbanauta.com.br>
+ * @author Anderson Jordï¿½o Marques <ajm@urbanauta.com.br>
  */
 
 if (0 > version_compare(PHP_VERSION, '5')) {
@@ -22,7 +22,7 @@ if (0 > version_compare(PHP_VERSION, '5')) {
 /**
  * include MyDataBase
  *
- * @author Anderson Jordão Marques
+ * @author Anderson Jordï¿½o Marques
  * @version 2.0
  */
 require_once('class.MyDataBase.php');
@@ -32,7 +32,7 @@ require_once('class.Util.php');
  * Short description of class Query
  *
  * @access public
- * @author Anderson Jordão Marques <ajm@urbanauta.com.br>
+ * @author Anderson Jordï¿½o Marques <ajm@urbanauta.com.br>
  */
 class MyQuery {
 	// --- ATTRIBUTES ---
@@ -69,14 +69,14 @@ class MyQuery {
 	}
 
 	/**
-	 * Recebe como parâmetro uma consulta, e salva ela com um identificador, e
+	 * Recebe como parï¿½metro uma consulta, e salva ela com um identificador, e
 	 * os registro na classe registro
 	 *
 	 * @access public
-	 * @author Anderson Jordão Marques <ajm@urbanauta.com.br
+	 * @author Anderson Jordï¿½o Marques <ajm@urbanauta.com.br
 	 * @param resource $query consulta firebird/interbase.
-	 * @param int $pagg nº de registros por página, 0 para sem paginação.
-	 * @param int $page nº da página atual.
+	 * @param int $pagg nï¿½ de registros por pï¿½gina, 0 para sem paginaï¿½ï¿½o.
+	 * @param int $page nï¿½ da pï¿½gina atual.
 	 * @return void
 	 * @since 19/07/2006
 	 * @version 2
@@ -93,13 +93,13 @@ class MyQuery {
 			# Atualizando as propriedades correspondentes
 			for ($i = 0; $i < $this->numColunas; $i++) {
 				//$colInfo = mysqli_ ibase_field_info($query, $i);
-				$this->colInfo[$i]['tp'] = mysqli_field_type($query, $i); // $colInfo['type'];
-				$this->colInfo[$i]['nm'] = mysqli_field_name($query, $i);// $colInfo['alias'];
-				$this->colInfo[$i]['rt'] = mysqli_field_table($query, $i);// $colInfo['relation'];
-				$this->colInfo[mysqli_field_name($query, $i)]['tp'] = mysqli_field_type($query, $i); // $colInfo['type'];
-				$this->colInfo[mysqli_field_name($query, $i)]['tam'] = mysqli_field_len($query, $i);// $colInfo['alias'];
-				$this->colInfo[mysqli_field_name($query, $i)]['rt'] = mysqli_field_table($query, $i);// $colInfo['relation'];
-				$this->grid[0][$i] = mysqli_field_name($query, $i);//$colInfo['alias'];
+				$this->colInfo[$i]['tp'] = mysqli_fetch_field_direct($query, $i)->type; // $colInfo['type'];
+				$this->colInfo[$i]['nm'] = mysqli_fetch_field_direct($query, $i)->type;// $colInfo['alias'];
+				$this->colInfo[$i]['rt'] = mysqli_fetch_field_direct($query, $i)->type;// $colInfo['relation'];
+				$this->colInfo[mysqli_fetch_field_direct($query, $i)->name]['tp'] = mysqli_fetch_field_direct($query, $i)->type; // $colInfo['type'];
+				$this->colInfo[mysqli_fetch_field_direct($query, $i)->name]['tam'] = mysqli_fetch_field_direct($query, $i)->length;// $colInfo['alias'];
+				$this->colInfo[mysqli_fetch_field_direct($query, $i)->name]['rt'] = mysqli_fetch_field_direct($query, $i)->table;// $colInfo['relation'];
+				$this->grid[0][$i] = mysqli_fetch_field_direct($query, $i)->name;//$colInfo['alias'];
 			}
 
 			$j = 0;
@@ -107,7 +107,7 @@ class MyQuery {
 			while ($linha = mysqli_fetch_row($query)) {
 
 				for ($i = 0; $i < $this->numColunas; $i++) {
-					# Verifica o Tipo de Dado do Campo atual: Isto se faz necessessário
+					# Verifica o Tipo de Dado do Campo atual: Isto se faz necessessï¿½rio
 					# porque os Campos do tipo TIMESTAMP e BLOB
 					# devem ter tratamentos distintos dos demais
 					switch ($this->colInfo[$i]['tp']) {
@@ -138,10 +138,10 @@ class MyQuery {
 	}
 
 	/**
-	 * Função para mostrar campos BLOB
+	 * Funï¿½ï¿½o para mostrar campos BLOB
 	 *
 	 * @return string String de campo BLOB.
-	 * @param blob $memo conteúdo a ser convertido.
+	 * @param blob $memo conteï¿½do a ser convertido.
 	 */
 	public function memoToStr($memo) {
 		if ($memo != null) {
@@ -154,7 +154,7 @@ class MyQuery {
 	}
 
 	/**
-	 * Função para converter timestamp para data no formato dd/mm/aaaa
+	 * Funï¿½ï¿½o para converter timestamp para data no formato dd/mm/aaaa
 	 *
 	 * @return string Data no formato dd/mm/aaaa.
 	 * @param string $dt Data no formato timestamp.
@@ -168,7 +168,7 @@ class MyQuery {
 	}
 
 	/**
-	 * Função para converter date aaaa-mm-dd para data no formato dd/mm/aaaa
+	 * Funï¿½ï¿½o para converter date aaaa-mm-dd para data no formato dd/mm/aaaa
 	 *
 	 * @return string Data no formato dd/mm/aaaa.
 	 * @param string $dt Data no formato date aaaa-mm-dd.

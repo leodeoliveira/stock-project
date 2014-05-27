@@ -2,4 +2,6 @@
 <buildpath>
 	<buildpathentry kind="src" path=""/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry kind="con" path="org.eclipse.dltk.USER_LIBRARY/Smarty-2.6.26"/>
+	<buildpathentry external="true" kind="lib" path="/var/www/Smarty-2.6.26"/>
 </buildpath>

@@ -45,32 +45,36 @@
 	{section name=linha loop=$js_scripts}
 	<script type="text/javascript" src="{$js_scripts[linha]}"></script>
 	{/section}
+
+
+	<title>Controle de Estoque</title>
+	<meta charset="utf8">
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="css/site-ifc.css" type="text/css">
+
 </head>
 
 <body>
 
 <!-- Layout original 800 x 600 -->
-	<div id="header">
-		<img id="grafx" src="img/urbanauta.png">
-		<img id="name" src="img/urbanauta_ds.png">
+<div class="container" id="publicacoes">
+
+	<div class="row">
+		{if $include_menu == true}
+		<div class="col-md-3">
+			{include file="menu.tpl"}
+		</div>
+		{/if}
+		<div class="col-md-9" id="news" style="margin-top: 20px;">
+			{$ds_conteudo}
+		</div>
 	</div>
+</div>
+{include file="footer.tpl"}
 
-	
-	<nav>
-		<ul class="nav nav-pills nav-stacked">
-			<li class="active transiction-teste"><a href="#grupoA">Grupo A</a></li>
-			<li><a href="#grupoB">Grupo B</a></li>
-			<li><a href="#grupoC">Grupo C</a></li>
-			<li><a href="#grupoD">Grupo D</a></li>
-			<li><a href="#grupoE">Grupo E</a></li>
-			<li><a href="#grupoF">Grupo F</a></li>
-			<li><a href="#grupoG">Grupo G</a></li>
-			<li><a href="#grupoH">Grupo H</a></li>    
-		</ul>
-	</nav>
-
-
-	<div id="leftCol">
-	<div id="rightCol">{$ds_conteudo}</div>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/readmore.min.js"></script>
+<script src="js/ifc.js"></script>
 </body>
 </html>
