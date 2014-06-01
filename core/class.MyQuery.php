@@ -94,8 +94,8 @@ class MyQuery {
 			for ($i = 0; $i < $this->numColunas; $i++) {
 				//$colInfo = mysqli_ ibase_field_info($query, $i);
 				$this->colInfo[$i]['tp'] = mysqli_fetch_field_direct($query, $i)->type; // $colInfo['type'];
-				$this->colInfo[$i]['nm'] = mysqli_fetch_field_direct($query, $i)->type;// $colInfo['alias'];
-				$this->colInfo[$i]['rt'] = mysqli_fetch_field_direct($query, $i)->type;// $colInfo['relation'];
+				$this->colInfo[$i]['nm'] = mysqli_fetch_field_direct($query, $i)->name;// $colInfo['alias'];
+				$this->colInfo[$i]['rt'] = mysqli_fetch_field_direct($query, $i)->table;// $colInfo['relation'];
 				$this->colInfo[mysqli_fetch_field_direct($query, $i)->name]['tp'] = mysqli_fetch_field_direct($query, $i)->type; // $colInfo['type'];
 				$this->colInfo[mysqli_fetch_field_direct($query, $i)->name]['tam'] = mysqli_fetch_field_direct($query, $i)->length;// $colInfo['alias'];
 				$this->colInfo[mysqli_fetch_field_direct($query, $i)->name]['rt'] = mysqli_fetch_field_direct($query, $i)->table;// $colInfo['relation'];

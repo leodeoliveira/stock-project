@@ -5,7 +5,7 @@ if (0 > version_compare(PHP_VERSION, '5')) {
 	die('This file was generated for PHP 5');
 }
 /**
- * Classe para manipulação de objetos da User Interface.
+ * Classe para manipulaï¿½ï¿½o de objetos da User Interface.
  *
  * @access public
  * @author Leonardo Cidral <lcidral@gmail.com>
@@ -14,18 +14,25 @@ if (0 > version_compare(PHP_VERSION, '5')) {
  */
 class UI {
 	// --- ATTRIBUTES ---
+
+	/**
+	 * @var MyDataBase
+	 */
 	private $db = null;
+	/**
+	 * @var smarty_setup
+	 */
 	private $smarty = null;
 	private $idGuias;
 	private $aba;
 
 	// --- OPERATIONS ---
 	/**
-	 * Construtor para menu. Lê tabela em banco de dados, e salva os dados nas matrizes.
+	 * Construtor para menu. Lï¿½ tabela em banco de dados, e salva os dados nas matrizes.
 	 *
 	 * @access public
-	 * @param resource $db Banco de dados, por referência.
-	 * @param resource $smarty Smarty, por referência.
+	 * @param resource $db Banco de dados, por referï¿½ncia.
+	 * @param resource $smarty Smarty, por referï¿½ncia.
 	 * @return void
 	 */
 	function UI(&$smarty) {
@@ -33,11 +40,11 @@ class UI {
 	}
 
 	/**
-	 * Função que gera o Segmento de tela
+	 * Funï¿½ï¿½o que gera o Segmento de tela
 	 *
 	 * @access public
 	 * @param $cd_segmento string Id do elemento
-	 * @param $tt_segmento string Título do segmento
+	 * @param $tt_segmento string Tï¿½tulo do segmento
 	 * @param $ds_cont_segmento string Conteudo do segmento
 	 * @param $ocultar bool Aberto ou Fechado
 	 * @return $str_segmento string
@@ -74,55 +81,62 @@ class UI {
 	 * Monta uma tabela na tela
 	 *
 	 * @version 1.0
-	 * @author Anderson Jordão Marques <ajm at urbanauta com br>
+	 * @author Anderson Jordï¿½o Marques <ajm at urbanauta com br>
 	 * @param array $grid Grid com a seguinte estrutura:
 	 * +["paginacao"] = dados references a paginacao, quando houver
 	 * | + ["regPagina"] = qtd de registros por pagina;
-	 * | + ["pagAtual"] = numero da pagina atual que é mostrada na tela;
+	 * | + ["pagAtual"] = numero da pagina atual que ï¿½ mostrada na tela;
 	 * | + ["totReg"] = numero total de registros a serem exibidos;
 	 * +[0] = array com as identificacoes do campo
 	 * | + [0] = "campo1"
 	 * | + [1] = "campo2"
 	 * | + [N-1] = "campoN"
 	 * +[1] = array com os valores de cada campo, no primeiro registro
-	 * | + ["campo1"] = valor do campo1 no 1º registro
-	 * | + ["campo2"] = valor do campo2 no 1º registro
-	 * | + ["campoN"] = valor do campoN no 1º registro
+	 * | + ["campo1"] = valor do campo1 no 1ï¿½ registro
+	 * | + ["campo2"] = valor do campo2 no 1ï¿½ registro
+	 * | + ["campoN"] = valor do campoN no 1ï¿½ registro
 	 * +[2] = array com os valores de cada campo, no segundo registro
-	 * | + ["campo1"] = valor do campo1 no 2º registro
-	 * | + ["campo2"] = valor do campo2 no 2º registro
-	 * | + ["campoN"] = valor do campoN no 2º registro
-	 * +[N] = array com os valores de cada campo, no enéssimo registro
-	 * | + ["campo1"] = valor do campo1 no Nº registro
-	 * | + ["campo2"] = valor do campo2 no Nº registro
-	 * | + ["campoN"] = valor do campoN no Nº registro
+	 * | + ["campo1"] = valor do campo1 no 2ï¿½ registro
+	 * | + ["campo2"] = valor do campo2 no 2ï¿½ registro
+	 * | + ["campoN"] = valor do campoN no 2ï¿½ registro
+	 * +[N] = array com os valores de cada campo, no enï¿½ssimo registro
+	 * | + ["campo1"] = valor do campo1 no Nï¿½ registro
+	 * | + ["campo2"] = valor do campo2 no Nï¿½ registro
+	 * | + ["campoN"] = valor do campoN no Nï¿½ registro
 	 *
 	 * @param array $tabela Estrutura onde a tabela deve ser montada.
-	 * +[0] = cabeçalhos da tabela
-	 * | + [0] = "1º cabeçalho"
-	 * | + [1] = "2º cabeçalho"
-	 * | + [N-1] = "Nº cabeçalho"
+	 * +[0] = cabeï¿½alhos da tabela
+	 * | + [0] = "1ï¿½ cabeï¿½alho"
+	 * | + [1] = "2ï¿½ cabeï¿½alho"
+	 * | + [N-1] = "Nï¿½ cabeï¿½alho"
 	 * +[1] = estrutura simples do campo
 	 * | + [0] = ""
 	 * | + [1] = "%[campo2]% - %[campoN]%"
 	 * | + [N-1] = "%[campoN]%"
-	 * +[2] = estrutura complexa, com código php executado pela função eval.
+	 * +[2] = estrutura complexa, com cï¿½digo php executado pela funï¿½ï¿½o eval.
 	 * |	usando sempre \ antes dos especias {", ', \, etc}.
-	 * |	caso não haja, deixar '' vazio.
+	 * |	caso nï¿½o haja, deixar '' vazio.
 	 * | + [0] = '$temp = \"R$ \" . substr('%[campo1]%',\".\",\",\");'
 	 * | + [1] = ''
 	 * | + [N-1] = ''
-	 * +["key"] = array que será passado a função de alterar do js.
-	 * | + ["campo1"] = apenas o identificação do campo.
-	 * | + ["campoN"] = apenas o identificação do campo.
-	 * @param String $flCtrl Identificação da tabela, e nome do JS.
-	 * TODO: implementar opInfo, para informações adicionaois.
-	 * @param array $opInfo Quando informado, a feita verificação dos campos informados e mostrado
-	 * o conteúdo no TPL especificado, através de ativação de sua função JS: informacao(‘chave’).
-	 * $opInfo = {default: NULL || "falta implementação"}
+	 * +["key"] = array que serï¿½ passado a funï¿½ï¿½o de alterar do js.
+	 * | + ["campo1"] = apenas o identificaï¿½ï¿½o do campo.
+	 * | + ["campoN"] = apenas o identificaï¿½ï¿½o do campo.
+	 * @param String $flCtrl Identificaï¿½ï¿½o da tabela, e nome do JS.
+	 * TODO: implementar opInfo, para informaï¿½ï¿½es adicionaois.
+	 * @param array $opInfo Quando informado, a feita verificaï¿½ï¿½o dos campos informados e mostrado
+	 * o conteï¿½do no TPL especificado, atravï¿½s de ativaï¿½ï¿½o de sua funï¿½ï¿½o JS: informacao(ï¿½chaveï¿½).
+	 * $opInfo = {default: NULL || "falta implementaï¿½ï¿½o"}
 	 */
 	function montarTabela($grid, $tabela, $idTabela, $opInfo, $registro_add=null, &$objRemoto=null) {
-		$this->smarty->assign("cdTela",$idTabela);
+		$this->smarty->assign("isNew", true);
+		$this->smarty->assign("cdTela", $idTabela);
+		$this->smarty->assign("idTabela", $idTabela);
+		$this->smarty->assign("isCabecalho", false);
+		$this->smarty->assign("isRodape", false);
+		$this->smarty->assign("titTabela", "");
+		$this->smarty->assign("pags", false);
+		$this->smarty->assign("numPags", 0);
 
 		if (!isset($grid["paginacao"]["regPagina"])) {
 			$grid["paginacao"]["regPagina"] = 25;
@@ -181,7 +195,7 @@ class UI {
 				$j++;
 			}
 
-			//colocação das linhas adicionais
+			//colocaï¿½ï¿½o das linhas adicionais
 			for ($j=0;$j < count($registro_add); $j++) {
 				for ($i=0;$i < count($tabela[0]); $i++) {
 					$cabecalho['ds'][$i+$c] = $tabela[0][$i];
@@ -258,7 +272,7 @@ class UI {
 			echo '<div id="fullgrid" style="width: 90%;">' .
 				'<p class="msgGrid">' .
 				'<strong style="text-transform: uppercase; text-align: center; clear: both; font-weight: bolder; display: block;">Nenhum registro encontrado</strong><br />';
-			echo 'N&atilde;o foi poss&iacute;vel encontrar registros correspondentes aos crit&eacute;rios preenchidos ou não existem registro cadastrados nesta base de dados.';
+			echo 'N&atilde;o foi poss&iacute;vel encontrar registros correspondentes aos crit&eacute;rios preenchidos ou nï¿½o existem registro cadastrados nesta base de dados.';
 			//var_dump($grid);
 			echo '</p>' .
 				'</div>';
