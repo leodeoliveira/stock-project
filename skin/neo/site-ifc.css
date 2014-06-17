@@ -43,10 +43,6 @@ input[name='search']{
 	font-size: 10pt;
 }
 
-#publicacoes #news, #news h4 a, #news h3 a{
-	color:#0000FF;
-}
-
 #publicacoes #warnings, #warnings h4 a, #warnings h3 a{
 	color:#FF0000;
 }
@@ -75,6 +71,12 @@ input[name='search']{
 	height: 300px;
 	text-align: center;
 }
+
+.table-striped>thead{
+    background-color: #428bca;
+    color: white;
+}
+
 nav {
 	font-size: 10pt;
 	margin-top: 20px;

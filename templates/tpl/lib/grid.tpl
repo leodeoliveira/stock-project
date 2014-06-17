@@ -35,7 +35,7 @@
 	{if $primeiro}
 	<div id="gridtabela_{$cdTela}" class="gridtabela">
 	{/if}
-		<table border="0" align="center" cellpadding="1" cellspacing="1" class="sortable grid" id="{$cdTela}_grid" width="100%">
+		<table border="0" align="center" cellpadding="1" cellspacing="1" class="table table-striped" id="{$cdTela}_grid" width="100%">
 			<thead>
 			<tr>
 			{section name=col loop=$cabecalho.ds}
