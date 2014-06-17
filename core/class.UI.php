@@ -2,141 +2,127 @@
 error_reporting(E_ALL);
 
 if (0 > version_compare(PHP_VERSION, '5')) {
-	die('This file was generated for PHP 5');
+    die('This file was generated for PHP 5');
 }
 /**
  * Classe para manipula��o de objetos da User Interface.
  *
  * @access public
- * @author Leonardo Cidral <lcidral@gmail.com>
+ * @author Leonardo Cidral <leonardo@softin.com.br>
  * @version 1.0
  * @since 1.0 - 28/08/2006
  */
 class UI {
-	// --- ATTRIBUTES ---
+    // --- ATTRIBUTES ---
+    private $db = null;
+    private $smarty = null;
+    private $idGuias;
+    private $aba;
 
-	/**
-	 * @var MyDataBase
-	 */
-	private $db = null;
-	/**
-	 * @var smarty_setup
-	 */
-	private $smarty = null;
-	private $idGuias;
-	private $aba;
+    // --- OPERATIONS ---
+    /**
+     * Construtor para menu. L� tabela em banco de dados, e salva os dados nas matrizes.
+     *
+     * @access public
+     * @param resource $db Banco de dados, por refer�ncia.
+     * @param resource $smarty Smarty, por refer�ncia.
+     * @return void
+     */
+    function UI(&$smarty) {
+    	$this->smarty = &$smarty;
+    }
 
-	// --- OPERATIONS ---
-	/**
-	 * Construtor para menu. L� tabela em banco de dados, e salva os dados nas matrizes.
-	 *
-	 * @access public
-	 * @param resource $db Banco de dados, por refer�ncia.
-	 * @param resource $smarty Smarty, por refer�ncia.
-	 * @return void
-	 */
-	function UI(&$smarty) {
-		$this->smarty = &$smarty;
-	}
-
-	/**
-	 * Fun��o que gera o Segmento de tela
-	 *
-	 * @access public
-	 * @param $cd_segmento string Id do elemento
-	 * @param $tt_segmento string T�tulo do segmento
-	 * @param $ds_cont_segmento string Conteudo do segmento
-	 * @param $ocultar bool Aberto ou Fechado
-	 * @return $str_segmento string
-	 */
-	function sAddSegmento($cd_segmento, $tt_segmento, $ds_cont_segmento, $ocultar=false, $extra=null) {
+    /**
+     * Fun��o que gera o Segmento de tela
+     *
+     * @access public
+     * @param $cd_segmento string Id do elemento
+     * @param $tt_segmento string T�tulo do segmento
+     * @param $ds_cont_segmento string Conteudo do segmento
+     * @param $ocultar bool Aberto ou Fechado
+     * @return $str_segmento string
+     */
+    function sAddSegmento($cd_segmento, $tt_segmento, $ds_cont_segmento, $ocultar=false, $extra=null) {
 		$this->smarty->assign("cd_segmento",$cd_segmento);
 		$this->smarty->assign("tt_segmento",$tt_segmento);
 		$this->smarty->assign("conteudo_segmento",$ds_cont_segmento);
 		$this->smarty->assign("ocultar",$ocultar);
 		$this->smarty->assign("styleExtra",$extra);
 		$str_segmento = $this->smarty->fetch("lib/segmento.tpl");
-		return $str_segmento;
-	}
+    	return $str_segmento;
+    }
 
-	function addAba($guia,$id,$tt,$ct) {
+    function addAba($guia,$id,$tt,$ct) {
 		$this->aba[$guia][] = array($id,$tt,$ct);
-	}
+    }
 
-	function getGuias($guia) {
-		$this->smarty->assign("idGuias",$guia);
-		for ($i=0;$i < count($this->aba[$guia]); $i++) {
-			$idsAbas[$i] = $this->aba[$guia][$i][0];
-			$ttsAbas[$i] = $this->aba[$guia][$i][1];
-			$ctsAbas[$i] = $this->aba[$guia][$i][2];
-		}
-		$this->smarty->assign("idAba",$idsAbas);
-		$this->smarty->assign("ttAba",$ttsAbas);
-		$this->smarty->assign("ctAba",$ctsAbas);
-		$this->aba = null;
-		return $this->smarty->fetch("lib/tabWebFx.tpl");
-	}
+    function getGuias($guia) {
+    	$this->smarty->assign("idGuias",$guia);
+    	for ($i=0;$i < count($this->aba[$guia]); $i++) {
+	    	$idsAbas[$i] = $this->aba[$guia][$i][0];
+	    	$ttsAbas[$i] = $this->aba[$guia][$i][1];
+	    	$ctsAbas[$i] = $this->aba[$guia][$i][2];
+    	}
+    	$this->smarty->assign("idAba",$idsAbas);
+    	$this->smarty->assign("ttAba",$ttsAbas);
+    	$this->smarty->assign("ctAba",$ctsAbas);
+    	$this->aba = null;
+    	return $this->smarty->fetch("lib/tabWebFx.tpl");
+    }
 
-	/**
-	 * Monta uma tabela na tela
-	 *
-	 * @version 1.0
-	 * @author Anderson Jord�o Marques <ajm at urbanauta com br>
-	 * @param array $grid Grid com a seguinte estrutura:
-	 * +["paginacao"] = dados references a paginacao, quando houver
-	 * | + ["regPagina"] = qtd de registros por pagina;
-	 * | + ["pagAtual"] = numero da pagina atual que � mostrada na tela;
-	 * | + ["totReg"] = numero total de registros a serem exibidos;
-	 * +[0] = array com as identificacoes do campo
-	 * | + [0] = "campo1"
-	 * | + [1] = "campo2"
-	 * | + [N-1] = "campoN"
-	 * +[1] = array com os valores de cada campo, no primeiro registro
-	 * | + ["campo1"] = valor do campo1 no 1� registro
-	 * | + ["campo2"] = valor do campo2 no 1� registro
-	 * | + ["campoN"] = valor do campoN no 1� registro
-	 * +[2] = array com os valores de cada campo, no segundo registro
-	 * | + ["campo1"] = valor do campo1 no 2� registro
-	 * | + ["campo2"] = valor do campo2 no 2� registro
-	 * | + ["campoN"] = valor do campoN no 2� registro
-	 * +[N] = array com os valores de cada campo, no en�ssimo registro
-	 * | + ["campo1"] = valor do campo1 no N� registro
-	 * | + ["campo2"] = valor do campo2 no N� registro
-	 * | + ["campoN"] = valor do campoN no N� registro
-	 *
-	 * @param array $tabela Estrutura onde a tabela deve ser montada.
-	 * +[0] = cabe�alhos da tabela
-	 * | + [0] = "1� cabe�alho"
-	 * | + [1] = "2� cabe�alho"
-	 * | + [N-1] = "N� cabe�alho"
-	 * +[1] = estrutura simples do campo
-	 * | + [0] = ""
-	 * | + [1] = "%[campo2]% - %[campoN]%"
-	 * | + [N-1] = "%[campoN]%"
-	 * +[2] = estrutura complexa, com c�digo php executado pela fun��o eval.
-	 * |	usando sempre \ antes dos especias {", ', \, etc}.
-	 * |	caso n�o haja, deixar '' vazio.
-	 * | + [0] = '$temp = \"R$ \" . substr('%[campo1]%',\".\",\",\");'
-	 * | + [1] = ''
-	 * | + [N-1] = ''
-	 * +["key"] = array que ser� passado a fun��o de alterar do js.
-	 * | + ["campo1"] = apenas o identifica��o do campo.
-	 * | + ["campoN"] = apenas o identifica��o do campo.
-	 * @param String $flCtrl Identifica��o da tabela, e nome do JS.
-	 * TODO: implementar opInfo, para informa��es adicionaois.
+    /**
+     * Monta uma tabela na tela
+     *
+     * @version 1.0
+     * @author Anderson Jord�o Marques <anderson at softin com br>
+     * @param array $grid Grid com a seguinte estrutura:
+     * +["paginacao"] = dados references a paginacao, quando houver
+     * | + ["regPagina"] = qtd de registros por pagina;
+     * | + ["pagAtual"] = numero da pagina atual que � mostrada na tela;
+     * | + ["totReg"] = numero total de registros a serem exibidos;
+     * +[0] = array com as identificacoes do campo
+     * | + [0] = "campo1"
+     * | + [1] = "campo2"
+     * | + [N-1] = "campoN"
+     * +[1] = array com os valores de cada campo, no primeiro registro
+     * | + ["campo1"] = valor do campo1 no 1� registro
+     * | + ["campo2"] = valor do campo2 no 1� registro
+     * | + ["campoN"] = valor do campoN no 1� registro
+     * +[2] = array com os valores de cada campo, no segundo registro
+     * | + ["campo1"] = valor do campo1 no 2� registro
+     * | + ["campo2"] = valor do campo2 no 2� registro
+     * | + ["campoN"] = valor do campoN no 2� registro
+     * +[N] = array com os valores de cada campo, no en�ssimo registro
+     * | + ["campo1"] = valor do campo1 no N� registro
+     * | + ["campo2"] = valor do campo2 no N� registro
+     * | + ["campoN"] = valor do campoN no N� registro
+     *
+     * @param array $tabela Estrutura onde a tabela deve ser montada.
+     * +[0] = cabe�alhos da tabela
+     * | + [0] = "1� cabe�alho"
+     * | + [1] = "2� cabe�alho"
+     * | + [N-1] = "N� cabe�alho"
+     * +[1] = estrutura simples do campo
+     * | + [0] = ""
+     * | + [1] = "%[campo2]% - %[campoN]%"
+     * | + [N-1] = "%[campoN]%"
+     * +[2] = estrutura complexa, com c�digo php executado pela fun��o eval.
+     * |	usando sempre \ antes dos especias {", ', \, etc}.
+     * |	caso n�o haja, deixar '' vazio.
+     * | + [0] = '$temp = \"R$ \" . substr('%[campo1]%',\".\",\",\");'
+     * | + [1] = ''
+     * | + [N-1] = ''
+     * +["key"] = array que ser� passado a fun��o de alterar do js.
+     * | + ["campo1"] = apenas o identifica��o do campo.
+     * | + ["campoN"] = apenas o identifica��o do campo.
+     * @param String $flCtrl Identifica��o da tabela, e nome do JS.
+     * TODO: implementar opInfo, para informa��es adicionaois.
 	 * @param array $opInfo Quando informado, a feita verifica��o dos campos informados e mostrado
 	 * o conte�do no TPL especificado, atrav�s de ativa��o de sua fun��o JS: informacao(�chave�).
 	 * $opInfo = {default: NULL || "falta implementa��o"}
-	 */
-	function montarTabela($grid, $tabela, $idTabela, $opInfo, $registro_add=null, &$objRemoto=null) {
-		$this->smarty->assign("isNew", true);
-		$this->smarty->assign("cdTela", $idTabela);
-		$this->smarty->assign("idTabela", $idTabela);
-		$this->smarty->assign("isCabecalho", false);
-		$this->smarty->assign("isRodape", false);
-		$this->smarty->assign("titTabela", "");
-		$this->smarty->assign("pags", false);
-		$this->smarty->assign("numPags", 0);
+     */
+    function montarTabela($grid, $tabela, $idTabela, $opInfo, $registro_add=null, &$objRemoto=null) {
+		$this->smarty->assign("cdTela",$idTabela);
 
 		if (!isset($grid["paginacao"]["regPagina"])) {
 			$grid["paginacao"]["regPagina"] = 25;
@@ -163,6 +149,8 @@ class UI {
 						$temp = str_replace("%[".$campo."]%",trim($registro[$campo]),$temp);
 						if (isset($_SESSION[$idTabela]["totalizar"]) && $_SESSION[$idTabela]["totalizar"][$i] == "S") {
 							if ($j==0) $_SESSION[$idTabela]["rodape"][$campo] = 0;
+							$registro[$campo] *= 100;
+							$registro[$campo] = intval("$registro[$campo]")/100;
 							$_SESSION[$idTabela]["rodape"][$campo] += $registro[$campo];
 						}
 					}
@@ -249,7 +237,8 @@ class UI {
 				if (isset($registro_add["class"])) $this->smarty->assign("class_add",$registro_add["class"]);
 				if (isset($registro_add["mouseOver"])) $this->smarty->assign("mouse_over",$registro_add["mouseOver"]);
 				if (isset($registro_add["mouseOut"])) $this->smarty->assign("mouse_out",$registro_add["mouseOut"]);
-			}
+			} else
+				$this->smarty->assign("registro_add", "");
 
 			if ($grid["paginacao"]["regPagina"]!=0 && @$_SESSION[$idTabela]['novo']==1) {
 				$linhas = $grid["paginacao"]["totReg"];

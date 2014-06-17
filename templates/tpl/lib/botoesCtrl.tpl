@@ -1,35 +1,27 @@
 <div id="fullbotoes">
-	<label><span></span><b class="asterisco">*</b>{$HF_C_O}</label>
-
 	{if $msgErro}
-	<div id="msgErro">{$msgErro}</div>
+		<div id="msgErro">{$msgErro}</div>
 	{/if}
 
-	<label onclick="return false;"><span></span></label>
 	{if NOT $HiddenBuscar}
-		<button type="submit" name="{$cdTela}_btnBuscar" id="{$cdTela}_btnBuscar">{$BTN_BUSCAR}</button>
-		{if NOT $HiddenExcel}<button type="button" name="{$cdTela}_btnExcel" id="{$cdTela}_btnExcel">{$BTN_EXCEL}</button>{/if}
+		<input type="button" name="btBuscar_{$cdTela}" id="btBuscar_{$cdTela}" value="Buscar" onClick="{$objJS}.bBuscar();" />
 	{/if}
 
-	{if $inc == 1 || $alt == 1}
+	{if $inc == 'S' || $alt == 'S'}
 		{if NOT $HiddenGravar}
-		<button type="button" name="{$cdTela}_btnGravar" id="{$cdTela}_btnGravar"{if $inc == 0} style="display: 'none';"{/if}>{$BTN_GRAVAR}</button>
+		<input type="submit" name="btGravar_{$cdTela}" id="btGravar_{$cdTela}" value="Incluir" {if $inc == 'N'}style="display: 'none';"{/if} onClick="{$objJS}.bGravar();" />
 		{/if}
 	{/if}
 
-	<button type="reset" name="{$cdTela}_btnReset" id="{$cdTela}_btnReset">{$BTN_LIMPAR}</button>
-
-	{if NOT $HiddenBuscar && NOT $HiddenImprimir}
-		<button type="button" name="{$cdTela}_btnImprimir" id="{$cdTela}_btnImprimir">{$BTN_IMPRIMIR}</button>
-	{/if}
+	<input type="button" name="btLimpar_{$cdTela}" id="btLimpar_{$cdTela}" value="Limpar" onClick="{$objJS}.bLimpar('{$cdTela}');" />
 
 	{if $ShowGerarRelatorio}
-		<button type="button" name="{$cdTela}_btnGerarRelatorio" id="{$cdTela}_btnGerarRelatorio">{$BTN_GERAR_REL}</button>
+		<input type="button" name="btGerarRelatorio_{$cdTela}" id="btGerarRelatorio_{$cdTela}" value="Gerar Relat&oacute;rio" onClick="{$objJS}.btGerarRelatorio('{$cdUsuario}');" />
 	{/if}
 
 	{$ConteudoExtra}
 
-	<input type="hidden" name="{$cdTela}_operacao" id="{$cdTela}_operacao" value="I" />
-	<input type="hidden" name="{$cdTela}_alt" id="{$cdTela}_alt" value="{$alt}" />
-	<input type="hidden" name="{$cdTela}_inc" id="{$cdTela}_inc" value="{$inc}" />
+	<input type="hidden" name="operacao" id="operacao" value="I" />
+	<input type="hidden" name="alt" id="alt" value="{$alt}" />
+	<input type="hidden" name="inc" id="inc" value="{$inc}" />
 </div>

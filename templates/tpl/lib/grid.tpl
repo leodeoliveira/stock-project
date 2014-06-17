@@ -1,83 +1,87 @@
 {config_load file="urbanauta.conf" section="smarty_vars"}
-{if $isNew}
+{if $primeiro}
 <div id="fullgrid">
-	{if $pags && $numPags != 1}
-	<div id="barra_navegacao_{$idTabela}" class="barra_navegacao">
+{/if}
 
-		<div id="ctrl_esq_{$idTabela}" style="float:left;">
-			<span onclick="xpaginacao.primeira('{$idTabela}','{$idJS}');" class="pg_primeira" id="pg_primeira_{$idTabela}">&nbsp;</span>
-			<span onclick="xpaginacao.anterior('{$idTabela}','{$idJS}');" class="pg_anterior" id="pg_anterior_{$idTabela}">&nbsp;</span>
+	{if $paginas}
+	<div id="barra_navegacao_{$cdTela}">
+
+		<div id="ctrl_esq_{$cdTela}" style="float:left;">
+			<span onmouseup="xpaginacao.primeira('{$cdTela}');" class="pg_primeira" id="pg_primeira_{$cdTela}"></span>
+			<span onmouseup="xpaginacao.anterior('{$cdTela}');" class="pg_anterior" id="pg_anterior_{$cdTela}"></span>
 		</div>
 
-		<div id="nrPaginasTop_{$idTabela}" class="ConteinerNrpags" style="width: {if ($numPags > 10)}340{else}$numPags * 34{/if}px;">
-			{section name=linha loop=$pags}
-				<span onclick="xpaginacao.pagina({$pags[linha]},'{$idTabela}','{$idJS}');" onmouseover="xpaginacao.sinaliza_pagina(this);" onmouseout="xpaginacao.sinaliza_pagina(this);" class="{if $pags[linha] == 1}nr_pagina_sel{else}nr_pagina{/if}" id="pg_{$pags[linha]}_top_{$idTabela}" style="float: left;">{$pags[linha]}</span>
+		<div id="nrPaginasTop_{$cdTela}" name="nrPaginasTop_{$cdTela}" class="ConteinerNrPaginas" style="width: {if ($nr_paginas > 10)}340{else}$nr_paginas * 34{/if}px;">
+			{section name=linha loop=$paginas}
+				<span onmouseup="xpaginacao.pagina({$paginas[linha]},'{$cdTela}');" onmouseover="xpaginacao.sinaliza_pagina(this);" onmouseout="xpaginacao.sinaliza_pagina(this);" class="{if $paginas[linha] == 1}nr_pagina_sel{else}nr_pagina{/if}" id="pg_{$paginas[linha]}_top_{$cdTela}" style="float: left;">{$paginas[linha]}</span>
 			{/section}
 		</div>
 
-		<div id="ctrl_dir_{$idTabela}" style="float:left;">
-			{if ($numPags > 10)}
-			<button id="ctlr_nrpags" class="ctrl_nrpags" onMouseUp="xpaginacao.cortinapags('nrPaginasTop_{$idTabela}',true);">+</button>
+		<div id="ctrl_dir_{$cdTela}" style="float:left;">
+			{if ($nr_paginas > 10)}
+			<button id="ctlr_nrpaginas" class="ctrl_nrPaginas" onMouseUp="xpaginacao.cortinaPaginas('nrPaginasTop_{$cdTela}',true);">+</button>
 			{/if}
 
-			<span onclick="xpaginacao.proxima('{$idTabela}','{$idJS}');" class="pg_proxima" id="pg_proxima_{$idTabela}">&nbsp;</span>
-			<span onclick="xpaginacao.ultima('{$idTabela}','{$idJS}');" class="pg_ultima" id="pg_ultima_{$idTabela}">&nbsp;</span>
+			<span onmouseup="xpaginacao.proxima('{$cdTela}');" class="pg_proxima" id="pg_proxima_{$cdTela}"></span>
+			<span onmouseup="xpaginacao.ultima('{$cdTela}');" class="pg_ultima" id="pg_ultima_{$cdTela}"></span>
 			&nbsp;&nbsp;
-			Ir para:&nbsp;<input name="nr_pagina_atual_old_{$idTabela}" id="nr_pagina_atual_old_{$idTabela}" type="hidden" value="1" readonly /><input id="nr_pagina_atual_{$idTabela}" type="text" maxlength="4" class="pg_carregada" onBlur="xpaginacao.vaipara(this.value,'{$idTabela}','{$idJS}');" value="1" onKeyPress="return app.apenas_inteiros(event, this);">&nbsp;/&nbsp;<span id="nr_pagina_total_{$idTabela}">{$numPags}</span>
+			Ir para:&nbsp;<input name="nr_pagina_atual_old_{$cdTela}" id="nr_pagina_atual_old_{$cdTela}" type="hidden" value="1" readonly /><input id="nr_pagina_atual_{$cdTela}" type="text" maxlength="4" class="pg_carregada" onBlur="xpaginacao.vaipara(this.value,'{$cdTela}');" value="1" onKeyPress="return app.apenas_inteiros(event, this);">&nbsp;/&nbsp;<span id="nr_pagina_total_{$cdTela}">{$nr_paginas}</span>
 		</div>
 	</div>
 	{/if}
 
-	{if $numPags > 1}<div style="height: 25px;">&nbsp;&nbsp;</div>{/if}
-	<div id="gridTabela_{$idTabela}" class="gridtabela">
-{/if}
-<table class="grid" id="{$idTabela}">
-	{if $titTabela}
-	<caption class="caption">{$titTabela}</caption>
+
+	{if $nr_paginas}<div style="height: 25px;">&nbsp;&nbsp;</div>{/if}
+	{if $primeiro}
+	<div id="gridtabela_{$cdTela}" class="gridtabela">
 	{/if}
-	{if $isCabecalho}
-	<thead>
-		{$extraFirstLine}
-		<tr>
-			{section name=j loop=$colunas}
-			{if not $ordJS}
-			<th id="th_{$idTabela}_{$colunas[j].id}"
-			{if $colunas[j].ordenar}onclick="xgrid.ts_resortTable(this, '{$smarty.section.j.index}','{$idTabela}','{$idJS}','{$colunas[j].ordenar}');return false;"{/if}>&nbsp;&nbsp;&nbsp;{$colunas[j].cabecalho}<span id="spanord_{$idTabela}_{$smarty.section.j.index}" class="sortarrow">&nbsp;&nbsp;&nbsp;</span></th>
-			{else}
-			<th id="th_{$idTabela}_{$colunas[j].id}"
-			{if $colunas[j].ordenar}onclick="ts_resortTable(this, '{$smarty.section.j.index}');return false;"{/if}>&nbsp;&nbsp;&nbsp;{$colunas[j].cabecalho}<span class="sortarrow" sortdir="down">&nbsp;&nbsp;&nbsp;</span></th>
-			{/if}
+		<table border="0" align="center" cellpadding="1" cellspacing="1" class="sortable grid" id="{$cdTela}_grid" width="100%">
+			<thead>
+			<tr>
+			{section name=col loop=$cabecalho.ds}
+				{if $ordenacao > 1}
+				<th id="{$cdTela}_{$smarty.section.col.index}" onclick="xgrid.ts_resortTable(this, '{$smarty.section.col.index}','{$cdTela}','{$cabecalho.ord[col]}');return false;" class="th_titulo">&nbsp;&nbsp;&nbsp;{$cabecalho.ds[col]}<span id="spanord_{$cdTela}_{$smarty.section.col.index}" class="sortarrow">&nbsp;&nbsp;&nbsp;</span></th>
+				{else}
+				<th id="{$cdTela}_{$smarty.section.col.index}" onclick="ts_resortTable(this, '{$smarty.section.col.index}','{$cdTela}');return false;" class="th_titulo">&nbsp;&nbsp;&nbsp;{$cabecalho.ds[col]}<span class="sortarrow">&nbsp;&nbsp;&nbsp;</span></th>
+				{/if}
 			{/section}
-		</tr>
-	</thead>
-	{/if}
-	{if $isRodape}
-	<tfoot>
-		<tr>
-			{section name=j loop=$colunas}
-			<td id="tf_{$idTabela}_{$colunas[j].id}" class="tipo_{$colunas[$smarty.section.j.index].tipo}">{$colunas[j].rodape}</td>
+			</tr>
+			</thead>
+			<tbody>
+			{section name=linha loop=$registro}
+			<tr class="{cycle values="cor1,cor2"}" onmouseover="this.style.border='1px solid #316AC5'; this.style.backgroundColor='#FADCB4';" onmouseout="this.style.border=''; this.style.backgroundColor='';">
+				{section name=coluna loop=$cabecalho.cd}
+					<td id="{$cdTela}_{$smarty.section.coluna.index}_{$smarty.section.linha.index}" class="{$cdTela}_col_{$cabecalho.cd[coluna]} tipo_{$cabecalho.tipo[coluna]}">{$registro[linha][coluna]}</td>
+				{/section}
+			</tr>
 			{/section}
-		</tr>
-	</tfoot>
-	{/if}
-	<tbody>
-		{foreach name=l item=lin from=$linhas}
-		<tr class="{cycle values="cor1,cor2"}">
-			{foreach name=c item=col from=$lin}
-			<td class="td_{$idTabela}_{$colunas[$smarty.foreach.c.index].id} tipo_{$colunas[$smarty.foreach.c.index].tipo}">{$col}</td>
-			{/foreach}
-		</tr>
-		{/foreach}
-	</tbody>
-</table>
-{if $isNew}
+			</tbody>
+			<tfoot>
+			{section name=linha loop=$rodape}
+				<tr id="tr_edit_{$smarty.section.linha.index}" style="font-weight:bolder; background-image: url(skin/{#NM_TEMA#}/img/degrade-fundo-grid.gif); background-repeat: repeat-x;">
+				{section name=coluna loop=$cabecalho.cd}
+					<td class="{$cdTela}_col_{$cabecalho.cd[coluna]}">{$rodape[linha][coluna]}</td>
+				{/section}
+				</tr>
+			{/section}
+			{section name=linha loop=$registro_add}
+				<tr id="tr_edit" style="background-image: url(skin/{#NM_TEMA#}/img/degrade-fundo-grid.gif); background-repeat: repeat-x;" {if $class_add}class="class_add" {/if}{if $mouse_over}onMouseOver="$mouse_over" {/if}{if $mouse_out}onMouseOut="$mouse_out"{/if}>
+				{section name=coluna loop=$cabecalho.cd}
+					<td class="col_{$cabecalho.cd[coluna]}">{$registro_add[linha][coluna]}</td>
+				{/section}
+				</tr>
+			{/section}
+			</tfoot>
+		</table>
+
+{if $primeiro}
 	</div>
 </div>
 {/if}
 
-{if $isNew && $numPags == 1}
+{if not $paginas && $primeiro}
 	<div style="height: 0px;">
-	<input name="nr_pagina_atual_{$idTabela}" id="nr_pagina_atual_{$idTabela}" type="hidden" value="1" />
-	<input name="nr_pagina_atual_old_{$idTabela}" id="nr_pagina_atual_old_{$idTabela}" type="hidden" value="1" />
+	<input name="nr_pagina_atual_{$cdTela}" id="nr_pagina_atual_{$cdTela}" type="hidden" value="1" />
+	<input name="nr_pagina_atual_old_{$cdTela}" id="nr_pagina_atual_old_{$cdTela}" type="hidden" value="1" />
 	</div>
 {/if}
