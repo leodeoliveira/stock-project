@@ -62,6 +62,7 @@
 	<div class="row">
 		{if $include_menu == true}
 		<div class="col-md-3">
+			<img src="/stock-project/img/logo.jpg">
 			{include file="menu.tpl"}
 		</div>
 		{/if}
