@@ -4,10 +4,10 @@ $message = "";
 switch ($_REQUEST["ext"]) {
 	case "put":
 		try	{
-			$conteudo["name"] = $_REQUEST["name"];
-			$conteudo["email"] = $_REQUEST["email"];
-			$conteudo["password"] = $_REQUEST["password"];
-			$setup->conn->insertQuery("users", $conteudo);
+			$conteudo["description"] = $_REQUEST["description"];
+			$conteudo["unit_value"] = $_REQUEST["unit_value"];
+			$conteudo["note"] = $_REQUEST["note"];
+			$setup->conn->insertQuery("products", $conteudo);
 			$message = "sucesso";
 		}
 		catch (Exception $e) {
@@ -16,6 +16,10 @@ switch ($_REQUEST["ext"]) {
 	default:
 		ob_get_clean();
 		$setup->smarty->assign("message", $message);
+		$estrutura[0] = array("C&oacute;digo", "Descri&ccedil;&atilde;o", "Valor unit&aacute;rio");
+		$estrutura[1] = array("%[id_product]%", "%[description]%", "%[unit_value]%");
+		$tabela = $setup->conn->getTabela("SELECT id_product, description, unit_value FROM products", $estrutura, "users");
+		$setup->smarty->assign("tabela", $tabela);
 		$setup->pagina(true,$setup->smarty->fetch("product.tpl"));
 		break;
 }
