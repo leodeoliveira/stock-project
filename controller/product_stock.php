@@ -5,8 +5,8 @@ switch ($_REQUEST["ext"]) {
 	case "put":
 		try	{
 			$conteudo["name"] = $_REQUEST["name"];
-			$conteudo["email"] = $_REQUEST["email"];
-			$conteudo["password"] = $_REQUEST["password"];
+			$conteudo["email"] = $_REQUEST["qtd"];
+			$conteudo["note"] = $_REQUEST["note"];
 			$setup->conn->insertQuery("users", $conteudo);
 			$message = "sucesso";
 		}
