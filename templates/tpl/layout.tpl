@@ -49,8 +49,6 @@
 
 	<title>Controle de Estoque</title>
 	<meta charset="utf8">
-	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="css/site-ifc.css" type="text/css">
 
 </head>
 
@@ -73,9 +71,5 @@
 </div>
 {include file="footer.tpl"}
 
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/readmore.min.js"></script>
-<script src="js/ifc.js"></script>
 </body>
 </html>

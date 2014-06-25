@@ -2,9 +2,27 @@
 ob_start();
 $message = "";
 switch ($_REQUEST["ext"]) {
+	case "json":
+		$sql = "SELECT id_product, description FROM products ";
+
+		if ($realQuery[1] == "live") {
+			$sql .= "WHERE description LIKE '%".strtoupper($_REQUEST["arquivo"]) ."%'";
+		}
+
+		$result = array();
+
+		$qy = $setup->conn->selectQuery($sql);
+		$lin = $qy->getNumLinhas();
+		for ($i = 0; $i < $lin; $i++) {
+			$result[] = (object)array('id' => $qy->getReg("id_product", $i),
+					'value' => $qy->getReg("description", $i));
+		}
+
+		echo json_encode($result);
+		break;
 	case "put":
 		try	{
-			$conteudo["description"] = $_REQUEST["description"];
+			$conteudo["description"] = htmlentities($_REQUEST["description"]);
 			$conteudo["unit_value"] = $_REQUEST["unit_value"];
 			$conteudo["note"] = $_REQUEST["note"];
 			$setup->conn->insertQuery("products", $conteudo);

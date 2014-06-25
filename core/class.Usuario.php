@@ -10,7 +10,7 @@ error_reporting(E_ALL);
  *
  * Automatic generated with ArgoUML 0.22.beta2 on 25.07.2006, 08:23:01
  *
- * @author Anderson Jordão Marques <ajm@urbanauta.com.br>
+ * @author Anderson Jordï¿½o Marques <ajm@urbanauta.com.br>
  * @since 24/07/2006
  * @version 1.0
  */
@@ -24,10 +24,10 @@ require_once ('class.MyDataBase.php');
 require_once ('class.Util.php');
 
 /**
- * Classe para manipulação de usuários.
+ * Classe para manipulaï¿½ï¿½o de usuï¿½rios.
  *
  * @access public
- * @author Anderson Jordão Marques <ajm@urbanauta.com.br>
+ * @author Anderson Jordï¿½o Marques <ajm@urbanauta.com.br>
  * @version 1.0
  */
 class Usuario {
@@ -40,11 +40,11 @@ class Usuario {
 	// --- OPERATIONS ---
 
 	/**
-	 * Construtor para usuário.
+	 * Construtor para usuï¿½rio.
 	 *
 	 * @access public
-	 * @param resource $db Banco de dados, por referência.
-	 * @param resource $smarty Smarty, por referência.
+	 * @param resource $db Banco de dados, por referï¿½ncia.
+	 * @param resource $smarty Smarty, por referï¿½ncia.
 	 * @return void
 	 */
 	function Usuario(& $db, & $smarty, & $crypto, & $UI) {
@@ -107,7 +107,7 @@ class Usuario {
 			'',
 			'',
 			'',
-			'$temp = ("%[FL_ATIVO]%" == "S") ? "<img src=\"skin/'.NM_TEMA.'/ico/on.gif\" alt=\"Sim\" />" : "<img src=\"skin/'.NM_TEMA.'/ico/off.gif\" alt=\"Não\" />";'
+			'$temp = ("%[FL_ATIVO]%" == "S") ? "<img src=\"skin/'.NM_TEMA.'/ico/on.gif\" alt=\"Sim\" />" : "<img src=\"skin/'.NM_TEMA.'/ico/off.gif\" alt=\"Nï¿½o\" />";'
 			);
 			$tabela['key'] = array (
 			"CD_USU"
@@ -127,14 +127,14 @@ class Usuario {
 		}
 
 		$str_frm = $this->smarty->fetch("telas/USU_SENHA.tpl");
-		$str_tela = $this->UI->sAddSegmento("frm_usu_altera_senha", "Usuário: Alterar Senha", $str_frm, false);
+		$str_tela = $this->UI->sAddSegmento("frm_usu_altera_senha", "Usuï¿½rio: Alterar Senha", $str_frm, false);
 
 		return $str_tela;
 	}
 
 	public function frmAlterarSenhaPW() {
 		$str_frm = $this->smarty->fetch("portal/telas/USU_SENHAPW.tpl");
-		$str_tela = $this->UI->sAddSegmento("frm_usu_altera_senha", "Usuário: Alterar Senha", $str_frm, false);
+		$str_tela = $this->UI->sAddSegmento("frm_usu_altera_senha", "Usuï¿½rio: Alterar Senha", $str_frm, false);
 
 		return $str_tela;
 	}
@@ -182,7 +182,7 @@ class Usuario {
 		$sql = "SELECT A.CD_EQUIPE_VENDAS, A.CD_USU_SISTEMA,
 		A.CD_USU, B.NM_USU, A.FL_ATIVO,
 		CASE WHEN (A.FL_DIRETORIA='S') THEN 'Diretoria'
-		WHEN (A.FL_GERENCIA='S') THEN 'Gerência'
+		WHEN (A.FL_GERENCIA='S') THEN 'Gerï¿½ncia'
 		WHEN (A.FL_SUPERVISOR='S') THEN 'Supervisor'
 		WHEN (A.FL_PROMOTOR='S') THEN 'Promotor' END as FL_HIERARQUIA,
 		A.CD_FABRICA, A.CD_PROTOCOLO_SEGURANCA, C.CD_USU_SISTEMA AS CD_USU_SUPERIOR
@@ -202,12 +202,12 @@ class Usuario {
 		}
 		$sql .= " ORDER BY B.NM_USU";
 		$tabela[0] = array (
-			"Cód.",
-			"Usuário",
+			"Cï¿½d.",
+			"Usuï¿½rio",
 			"Hierarquia",
-			"Cód. Fábrica",
+			"Cï¿½d. Fï¿½brica",
 			"Equipe",
-			"Protocolo de Segurança",
+			"Protocolo de Seguranï¿½a",
 			"Superior",
 			"Ativo"
 			);
@@ -229,7 +229,7 @@ class Usuario {
 			'',
 			'',
 			'',
-			'$temp = ("%[FL_ATIVO]%" == "S") ? "<img src=\"skin/' . NM_TEMA . '/ico/on.gif\" alt=\"Sim\" />" : "<img src=\"skin/' . NM_TEMA . '/ico/off.gif\" alt=\"Não\" />";'
+			'$temp = ("%[FL_ATIVO]%" == "S") ? "<img src=\"skin/' . NM_TEMA . '/ico/on.gif\" alt=\"Sim\" />" : "<img src=\"skin/' . NM_TEMA . '/ico/off.gif\" alt=\"Nï¿½o\" />";'
 			);
 			$tabela['key'] = array ("CD_USU");
 			$grid = $this->db->getTabela($sql, $tabela, "USU_HIERARQUIA", "A");
@@ -248,13 +248,13 @@ class Usuario {
 		$formulario = $this->smarty->fetch("telas/USU_HIERARQUIA.tpl");
 
 		$str_tela = $this->UI->sAddSegmento("form_usu_hierarquia", "Configurador de Hierarquia", $formulario, false);
-		$str_tela .= $this->UI->sAddSegmento("grid_usu_hierarquia", "Usuários", $grid, false);
+		$str_tela .= $this->UI->sAddSegmento("grid_usu_hierarquia", "Usuï¿½rios", $grid, false);
 
 		$this->smarty->assign("gridRevPromo", $this->gridRevPromo());
 		$this->smarty->assign("gridRevOutPromo", '<div id="fullgrid" style="width: 90%;">' .
 		'<p class="msgGrid">' .
 		'<strong style="text-transform: uppercase; text-align: center; clear: both; font-weight: bolder; display: block;">Nenhum registro encontrado</strong><br />' .
-		'N&atilde;o foi poss&iacute;vel encontrar registros correspondentes aos crit&eacute;rios preenchidos ou não existem registro cadastrados nesta base de dados.' .
+		'N&atilde;o foi poss&iacute;vel encontrar registros correspondentes aos crit&eacute;rios preenchidos ou n&atilde;o existem registro cadastrados nesta base de dados.' .
 		'</p>' .
 		'</div>');
 		$nivel = $this->smarty->fetch("telas/USU_REVENDEDORES.tpl");
@@ -382,7 +382,7 @@ class Usuario {
 		$ulli .= "<li id='$id'>$valor</li>";
 		}
 		} else {
-		$ulli .= "<li id='clear'>Registro não encontrado</li>";
+		$ulli .= "<li id='clear'>Registro nï¿½o encontrado</li>";
 		}
 		$ulli .= "</ul>";
 		unset($grid);
@@ -475,8 +475,8 @@ class Usuario {
 		$tabela[0] = array (
 			"Item",
 			"Consulta",
-			"Inclusão",
-			"Alteração"
+			"Inclusï¿½o",
+			"Alteraï¿½ï¿½o"
 			);
 			$tabela[1] = array (
 			"%[DS_MENU]%",
@@ -540,8 +540,8 @@ class Usuario {
 
 </style>
 EOD;
-		$str_tela .= $this->UI->sAddSegmento("grid_usuarios", "Lista de usuários", $this->gridUsuarios(), false);
-		$str_tela .= $this->UI->sAddSegmento("grid_menu_acesso", "Permissão de Acesso", $this->gridPermissaoMenu(null, null), false);
+		$str_tela .= $this->UI->sAddSegmento("grid_usuarios", "Lista de usuï¿½rios", $this->gridUsuarios(), false);
+		$str_tela .= $this->UI->sAddSegmento("grid_menu_acesso", "Permissï¿½o de Acesso", $this->gridPermissaoMenu(null, null), false);
 		return $str_tela;
 	}
 
@@ -573,9 +573,9 @@ EOD;
 		"inner JOIN TAB_USU b on(b.CD_USU = a.cd_usu_sistema) " .
 		"where a.fl_ativo='S' and a.fl_promotor='S' " . $onde;
 		$tabela[0] = array (
-			"Ação",
-			"Cód.",
-			"Usuário"
+			"Aï¿½ï¿½o",
+			"Cï¿½d.",
+			"Usuï¿½rio"
 			);
 			$tabela[1] = array (
 			"<button class=\"btAcao\" style='cursor: pointer; width: 21px;' onClick=\"$objJS.selecionarRegLivrinho('%[CD_USU]%','%[NM_USU]%','CD_USU_SISTEMA','DS_USU_SISTEMA','$objID');\"><img src=\"skin/kavo/ico/selecionar.gif\" /></button>",
@@ -603,9 +603,9 @@ EOD;
 				      FROM TAB_PEDV A
 				      WHERE A.CD_USU_ABERTURA = C.CD_USU) " . $onde;
 		$tabela[0] = array (
-			"Ação",
-			"Cód.",
-			"Usuário"
+			"Aï¿½ï¿½o",
+			"Cï¿½d.",
+			"Usuï¿½rio"
 			);
 			$tabela[1] = array (
 			"<button class=\"btAcao\" style='cursor: pointer; width: 21px;' onClick=\"$objJS.selecionarRegLivrinho('%[CD_USU]%','%[NM_USU]%','CD_USU_ABERTURA','DS_USU_ABERTURA','$objID');\"><img src=\"skin/kavo/ico/selecionar.gif\" /></button>",
@@ -638,7 +638,7 @@ EOD;
 				$ulli .= "<li id='$id'>$valor</li>";
 			}
 		} else {
-			$ulli .= "<li id='clear'>Registro não encontrado</li>";
+			$ulli .= "<li id='clear'>Registro nï¿½o encontrado</li>";
 		}
 		$ulli .= "</ul>";
 		unset ($grid);

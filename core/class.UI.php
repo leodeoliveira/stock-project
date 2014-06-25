@@ -261,7 +261,7 @@ class UI {
 			echo '<div id="fullgrid" style="width: 90%;">' .
 				'<p class="msgGrid">' .
 				'<strong style="text-transform: uppercase; text-align: center; clear: both; font-weight: bolder; display: block;">Nenhum registro encontrado</strong><br />';
-			echo 'N&atilde;o foi poss&iacute;vel encontrar registros correspondentes aos crit&eacute;rios preenchidos ou n�o existem registro cadastrados nesta base de dados.';
+			echo 'N&atilde;o foi poss&iacute;vel encontrar registros correspondentes aos crit&eacute;rios preenchidos ou n&atilde;o existem registro cadastrados nesta base de dados.';
 			//var_dump($grid);
 			echo '</p>' .
 				'</div>';

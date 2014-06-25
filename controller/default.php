@@ -6,12 +6,27 @@ if (MANUT) {
 	ob_start();
 	$setup->smarty->assign("msg","Boa noite Kleger!!!");
 	$setup->addCSS("skin/bootstrap.css","text/css","screen","StyleSheet","Titi");
-	$setup->addJS("lib/scripts/wufoo.js");
+	$setup->addCSS("skin/bootstrap.min.css","text/css","screen","StyleSheet","Titi");
+	$setup->addCSS("skin/css/site-ifc.css","text/css","screen","StyleSheet","Titi");
+
+	$setup->addJS("jquery-2.1.1.min.js");
+	$setup->addJS("bootstrap.min.js");
+	$setup->addJS("typeahead.jquery.min.js");
+	$setup->addJS("bloodhound.min.js");
 
 	$setup->smarty->assign("include_menu", true);
 
-	if (file_exists("controller/" . $_REQUEST["arquivo"] . ".php")) {
-		include("controller/" . $_REQUEST["arquivo"] . ".php");
+	$arquivo = $_REQUEST["arquivo"];
+
+	if ($_REQUEST['ext'] == "json") {
+		$fakeQuery = explode("data/", $_REQUEST["pastas"]);
+		$realQuery = explode("/", $fakeQuery[1]);
+		$arquivo = $realQuery[0];
+	}
+
+	if (file_exists("controller/" . $arquivo . ".php")) {
+		if (file_exists("controller/js/" . $arquivo . ".js")) $setup->addJS($arquivo. ".jsh");
+		include("controller/" . $arquivo . ".php");
 	} else {
 		$setup->pagina(true,ob_get_clean());
 	}

@@ -18,10 +18,26 @@ switch ($_REQUEST["ext"]) {
 		break;
 	case "js":
 		header("Content-type: text/javascript");
-		include("lib/scripts/" . $_REQUEST["arquivo"] . ".".$_REQUEST["ext"] );
+		include("lib/scripts/" . $_REQUEST["arquivo"] . ".js");
 		break;
-	default:
-		include("controller/default.php");
+	case "jsh":
+		header("Content-type: text/javascript");
+		include("controller/js/" . $_REQUEST["arquivo"] . ".js");
 		break;
+	case "json":
+		header("Content-type: application/json");
+		$age = 86400;
+		if (stripos($_REQUEST["pastas"], "/prefetch") !== FALSE) {
+			header("Pragma: no-cache");
+			header("Cache-Control: no-cache");
+			header("Expires: " . str_replace("+0000", "GMT", gmdate("r", time() - $age * 360)));
+		} else {
+			header_remove("Pragma");
+			header("Cache-Control: public, must-revalidate, max-age=". $age . ", s-maxage=". $age);
+			header("Expires: " . str_replace("+0000", "GMT", gmdate("r", time() + $age)));
+		}
+		default:
+			include("controller/default.php");
+			break;
 }
 ?>
