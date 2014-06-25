@@ -8,7 +8,7 @@ var products = new Bloodhound({
 products.initialize();
 
 function onAutocompleted($e, datum) {
-    $("id_product").val(datum.id);
+    $("#id_product").val(datum.id);
 }
 
 $(document).ready(function() {

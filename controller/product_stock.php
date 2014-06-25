@@ -19,8 +19,10 @@ switch ($_REQUEST["ext"]) {
 		$setup->smarty->assign("id", $id);
 		$setup->smarty->assign("message", $message);
 		$estrutura[0] = array("ID", "Produto", "Quantidade");
-		$estrutura[1] = array("%[id_product]%", "%[id_product]%", "%[quantity_movement]%");
-		$tabela = $setup->conn->getTabela("SELECT id_stock, id_product, quantity_movement FROM stock", $estrutura, "users");
+		$estrutura[1] = array("%[id_product]%", "%[id_product]% - %[description]%", "%[quantity_movement]%");
+		$tabela = $setup->conn->getTabela("SELECT s.id_stock, s.id_product, p.description, s.quantity_movement
+FROM stock s
+INNER JOIN products p ON (p.id_product = s.id_product) ", $estrutura, "users");
 		$setup->smarty->assign("tabela", $tabela);
 		$setup->pagina(true,$setup->smarty->fetch("product_stock.tpl"));
 		break;
