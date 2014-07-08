@@ -100,7 +100,7 @@ article header h2{
 footer{
 	background-color: #428bca;
 	border-color: #357ebd;
-	position:absolute;
+	margin-top: 20px;
 	bottom:0;
 	width:100%;
 }
