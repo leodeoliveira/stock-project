@@ -4,7 +4,6 @@ if (MANUT) {
 	$setup->pagina(true,$setup->smarty->fetch("under_construction.tpl"));
 } else {
 	ob_start();
-	$setup->smarty->assign("msg","Boa noite Kleger!!!");
 	$setup->addCSS("skin/bootstrap.css","text/css","screen","StyleSheet","Titi");
 	$setup->addCSS("skin/bootstrap.min.css","text/css","screen","StyleSheet","Titi");
 	$setup->addCSS("skin/css/site-ifc.css","text/css","screen","StyleSheet","Titi");
@@ -23,6 +22,9 @@ if (MANUT) {
 		$realQuery = explode("/", $fakeQuery[1]);
 		$arquivo = $realQuery[0];
 	}
+
+	if(!isset($_SESSION["online"]) || $_SESSION["online"] == false)
+		$arquivo = "login";
 
 	if (file_exists("controller/" . $arquivo . ".php")) {
 		if (file_exists("controller/js/" . $arquivo . ".js")) $setup->addJS($arquivo. ".jsh");

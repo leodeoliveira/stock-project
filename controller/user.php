@@ -5,8 +5,8 @@ switch ($_REQUEST["ext"]) {
 	case "put":
 		try	{
 			$conteudo["name"] = $_REQUEST["name"];
-			$conteudo["email"] = $_REQUEST["email"];
-			$conteudo["password"] = $_REQUEST["password"];
+			$conteudo["email"] = escapeshellcmd($_REQUEST["email"]);
+			$conteudo["password"] = escapeshellcmd($_REQUEST["password"]);
 			$setup->conn->insertQuery("users", $conteudo);
 			$message = "sucesso";
 		}
