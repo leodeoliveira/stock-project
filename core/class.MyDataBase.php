@@ -155,7 +155,7 @@ class MyDataBase {
 		$sql_insert = substr($sql_insert,0,-1).")";
 		$sql_values = substr($sql_values,0,-1).")";
 		$sql .= $sql_insert . " VALUES " . $sql_values;
-		//tirar	echo $sql;
+		//tirar echo $sql;
 		$blobids = NULL;
 		if ($sql_blob != NULL) {
 			for ($u=0;$u < count($sql_blob);$u++) {

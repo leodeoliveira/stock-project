@@ -1,13 +1,18 @@
 <?php
 ob_start();
 $message = "";
+$id = 0;
 switch ($_REQUEST["ext"]) {
 	case "put":
 		try	{
-			//$conteudo["name"] = $_REQUEST["name"];
-			//$conteudo["email"] = $_REQUEST["email"];
-			//$conteudo["password"] = $_REQUEST["password"];
-			//$setup->conn->insertQuery("sale_orders", $conteudo);
+			$conteudo["id_sales_order"] = $_REQUEST["id_sales_order"];
+			$conteudo["id_customer"] = $_REQUEST["id_customer"];
+			$conteudo["id_product"] = $_REQUEST["id_product"];
+			$conteudo["id_payment_method"] = $_REQUEST["payment_method"];
+			$conteudo["id_payment_condition"] = $_REQUEST["payment_condition"];
+			$conteudo["date"] = $_REQUEST["date"];
+			$conteudo["delivery_date"] = $_REQUEST["delivery_date"];
+			$setup->conn->insertQuery("sales_order", $conteudo);
 			$message = "sucesso";
 		}
 		catch (Exception $e) {

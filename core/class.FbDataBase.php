@@ -139,6 +139,7 @@ class FbDataBase {
 	 * @return void
 	 */
 	function insertQuery($tabela,$conteudo) {
+		echo $tabela, $conteudo;
 		$sql = "INSERT INTO $tabela ";
 		$sql_select = "";
 		$sql_blob = NULL;

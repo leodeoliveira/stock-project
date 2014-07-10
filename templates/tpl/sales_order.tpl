@@ -1,16 +1,25 @@
 <div class="col-md-offset-2">
 <div id="form-trans">
 <form role="form" class="form-horizontal" action="adm/user.put" method="post">
+    <input type="hidden" name="id_product" id="id_product" />
+    <input type="hidden" name="id_customer" id="id_customer" />
+    <input type="hidden" name="id_sales_order" id="id_sales_order" value="{$id}" />
     <div class="form-group">
         <label for="customer" class="col-sm-2 control-label">Consumidor *</label>
             <div class="col-sm-5">
-                <input type="text" id="customer" name="customer" class="form-control" placeholder="Digite seu nome..." required="required">
+                <input type="text" autocomplete="off" name="customer"
+                        id="customer" class="form-control"
+                        placeholder="Digite o Nome do Consumidor"
+                        required="required" />
             </div>
         </div>
         <div class="form-group">
             <label for="product" class="col-sm-2 control-label">Produto *</label>
             <div class="col-sm-5">
-                <input type="text" id="product" name="product" class="form-control" placeholder="Digite seu email..." required="required">
+                <input type="text" autocomplete="off" name="product"
+                        id="product" class="form-control"
+                        placeholder="Digite a descri&ccedil;&atilde;o do produto..."
+                        required="required" />
             </div>
         </div>
         <div class="form-group">

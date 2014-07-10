@@ -4,7 +4,6 @@ $message = "";
 switch ($_REQUEST["ext"]) {
 	case "put":
 		try	{
-			$conteudo["name"] = $_REQUEST["name"];
 			$conteudo["description"] = $_REQUEST["description"];
 			$setup->conn->insertQuery("payment_methods", $conteudo);
 			$message = "sucesso";

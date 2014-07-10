@@ -7,7 +7,12 @@
 				<input type="text" id="description" name="description" class="form-control" placeholder="Digite a descri&ccedil;&atilde;o..." required="required">
 			</div>
 		</div>
+		<div class="form-group">
+                <div class="col-sm-6 pull-right">
+                    <button class="btn btn-success" type="submit">Salvar</button>
+                </div>
 		</form>
 	</div>
 	{$tabela}
+    {$message}
 </div>
