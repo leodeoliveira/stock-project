@@ -23,6 +23,7 @@ switch ($_REQUEST["ext"]) {
 	case "put":
 		try	{
 			$conteudo["name"] = $_REQUEST["name"];
+			$conteudo["fullname"] = $_REQUEST["fullname"];
 			$conteudo["document"] = $_REQUEST["document"];
 			$conteudo["street"] = $_REQUEST["street"];
 			$conteudo["zip_code"] = $_REQUEST["cep"];

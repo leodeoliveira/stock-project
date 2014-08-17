@@ -10,7 +10,7 @@
 		<div class="form-group">
 			<label for="unit_value" class="col-sm-2 control-label">Valor Unit&aacute;rio *</label>
 			<div class="col-sm-5">
-				<input type="text" id="unit_value" name="unit_value" class="form-control" placeholder="Digite o valor unit&aacute;rio..." required="required">
+				<input type="number" id="unit_value" name="unit_value" class="form-control" placeholder="Digite o valor unit&aacute;rio..." min="0.01" step="0.01" value="1.00" required="required">
 			</div>
 		</div>
 		<div class="form-group">

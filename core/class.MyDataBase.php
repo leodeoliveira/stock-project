@@ -27,6 +27,9 @@ class MyDataBase {
 	private $user = null;
 	private $pass = null;
 
+	/**
+	 * @var mysqli
+	 */
 	private $conn = null;
 	private $smarty = null;
 	private $util = null;
@@ -53,6 +56,10 @@ class MyDataBase {
 	 */
 	function getId() {
 		return $this->conn;
+	}
+
+	function getLastInsertId() {
+		return $this->conn->insert_id;
 	}
 
 	/**
