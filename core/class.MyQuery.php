@@ -126,7 +126,7 @@ class MyQuery {
 							break;
 						default:
 							//$this->registro[$this->colInfo[$i]['nm']][$j] = $this->util->trocaacento($linha[$i]);
-							$this->registro[$this->colInfo[$i]['nm']][$j] = str_replace("'","",htmlspecialchars($linha[$i], ENT_IGNORE));
+							$this->registro[$this->colInfo[$i]['nm']][$j] = str_replace("'","",htmlspecialchars($linha[$i]));
 							break;
 					}//fim switch
 					$this->grid[$j+1][$this->colInfo[$i]['nm']] = $this->registro[$this->colInfo[$i]['nm']][$j];
