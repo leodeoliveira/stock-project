@@ -113,7 +113,7 @@ class MyDataBase {
 			switch ($info['tp']) {
 				case "BLOB":
 					if ($valor != "") {
-						$sql_blob[] = $this->strToMemo($this->util->trocaacento($valor));
+						$sql_blob[] = $this->strToMemo($valor);
 						$sql_insert .= "$campo, ";
 						$sql_values .= " ? , ";
 					}
@@ -150,10 +150,10 @@ class MyDataBase {
 					if (substr($valor,0,7) == "(SELECT" ||
 					strToUpper(substr($valor,0,9)) == "CASE WHEN") {
 						$sql_insert .= "$campo,";
-						$sql_values .= strToUpper($valor).",";
+						$sql_values .= $valor.",";
 					} elseif ($valor != "") {
 						$sql_insert .= "$campo,";
-						$sql_values .= "'".strToUpper($this->util->trocaacento($valor))."',";
+						$sql_values .= "'".$valor."',";
 					}
 					break;
 			}
@@ -250,7 +250,7 @@ class MyDataBase {
 					} elseif ($valor == " ") {
 						$sql_update .= "$campo='',";
 					} elseif ($valor != "") {
-						$sql_update .= "$campo='".strToUpper($this->util->trocaacento($valor))."',";
+						$sql_update .= "$campo='".$valor."',";
 					}
 					break;
 			}

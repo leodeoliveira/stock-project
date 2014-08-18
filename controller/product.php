@@ -22,11 +22,11 @@ switch ($_REQUEST["ext"]) {
 		break;
 	case "put":
 		try	{
-			$conteudo["description"] = htmlentities($_REQUEST["description"]);
+			$conteudo["description"] = $_REQUEST["description"];
 			$conteudo["unit_value"] =  (float) str_replace(",", ".", $_REQUEST["unit_value"]);
 			$conteudo["note"] = $_REQUEST["note"];
 			$setup->conn->insertQuery("products", $conteudo);
-			$message = "sucesso";
+			$message = "sucesso" . $_REQUEST["description"];
 		}
 		catch (Exception $e) {
 			$message = $e->getMessage();
