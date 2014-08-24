@@ -16,7 +16,7 @@ switch ($_REQUEST["ext"]) {
 		$setup->smarty->assign("message", $message);
 		$estrutura[0] = array("C&oacute;digo", "Descri&ccedil;&atilde;o");
 		$estrutura[1] = array("%[id_payment_condition]%", "%[description]%");
-		$tabela = $setup->conn->getTabela("SELECT id_payment_condition, description FROM payment_conditions", $estrutura, "users");
+		$tabela = $setup->conn->getTabela("SELECT id_payment_condition, description FROM payment_conditions", $estrutura, "conditions");
 		$setup->smarty->assign("tabela", $tabela);
 		$setup->pagina(true,$setup->smarty->fetch("payment_condition.tpl"));
 		break;

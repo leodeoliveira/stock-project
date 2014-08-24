@@ -22,9 +22,9 @@ switch ($_REQUEST["ext"]) {
 		break;
 	case "put":
 		try	{
-			$conteudo["description"] = $_REQUEST["description"];
+			$conteudo["description"] = utf8_encode($_REQUEST["description"]);
 			$conteudo["unit_value"] =  (float) str_replace(",", ".", $_REQUEST["unit_value"]);
-			$conteudo["note"] = $_REQUEST["note"];
+			$conteudo["note"] = utf8_encode($_REQUEST["note"]);
 			$setup->conn->insertQuery("products", $conteudo);
 			$message = "sucesso" . $_REQUEST["description"];
 		}
@@ -36,7 +36,7 @@ switch ($_REQUEST["ext"]) {
 		$setup->smarty->assign("message", $message);
 		$estrutura[0] = array("C&oacute;digo", "Descri&ccedil;&atilde;o", "Valor unit&aacute;rio");
 		$estrutura[1] = array("%[id_product]%", "%[description]%", "%[unit_value]%");
-		$tabela = $setup->conn->getTabela("SELECT id_product, description, unit_value FROM products", $estrutura, "users");
+		$tabela = $setup->conn->getTabela("SELECT id_product, description, unit_value FROM products", $estrutura, "products");
 		$setup->smarty->assign("tabela", $tabela);
 		$setup->pagina(true,$setup->smarty->fetch("product.tpl"));
 		break;

@@ -41,7 +41,7 @@ switch ($_REQUEST["ext"]) {
 		$setup->smarty->assign("message", $message);
 		$estrutura[0] = array("C&oacute;digo", "Nome", "Cidade");
 		$estrutura[1] = array("%[id_customer]%", "%[name]%", "%[city]%");
-		$tabela = $setup->conn->getTabela("SELECT id_customer, name, city FROM customers", $estrutura, "users");
+		$tabela = $setup->conn->getTabela("SELECT id_customer, name, city FROM customers", $estrutura, "customers");
 		$setup->smarty->assign("tabela", $tabela);
 		$setup->pagina(true,$setup->smarty->fetch("customer.tpl"));
 		break;
