@@ -123,6 +123,7 @@ class UI {
      */
     function montarTabela($grid, $tabela, $idTabela, $opInfo, $registro_add=null, &$objRemoto=null) {
 		$this->smarty->assign("cdTela",$idTabela);
+		$this->smarty->assign("primeiro",FALSE);
 
 		if (!isset($grid["paginacao"]["regPagina"])) {
 			$grid["paginacao"]["regPagina"] = 25;
@@ -167,7 +168,10 @@ class UI {
 					}
 					if (isset($tabela[3]) && ($tabela[3][$i] != "")) {
 						$cabecalho['ord'][$i+$c] = $tabela[3][$i];
+					} else {
+						$cabecalho['ord'][$i+$c] = "";
 					}
+
 					$new_grid[$j][$i+$c] = $temp;
 					$cabecalho['cd'][$i+$c] = isset($campo) ? $campo : $campo2;
 					$cabecalho['tipo'][$i+$c] = isset($campo) ? substr($campo,0,2) == "PS" ? substr($campo,3,2) : substr($campo,0,2) : substr($campo2,0,2);

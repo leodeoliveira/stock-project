@@ -1,3 +1,4 @@
 RewriteEngine On
 #RewriteRule projeto/(.*) ../webcollab-2.31/$1
-RewriteRule (.*)/(.*)\.(.*)$ redirect.php?pastas=$1&arquivo=$2&ext=$3
+#RewriteRule (.*)/(.*)\.(.*)$ redirect.php?pastas=$1&arquivo=$2&ext=$3
+RewriteRule (.*)/(.*)\.(.*)$ redirect.php?pastas=$1&arquivo=$2&ext=$3&%{QUERY_STRING}

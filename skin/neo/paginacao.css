@@ -1,0 +1,98 @@
+/* ------------------------------ PAGINAÇÃO -------------------------------- */
+.barra_navegacao {
+	margin: 0 auto;
+	display: block;
+	clear: both;
+	margin-bottom: 5px;
+	font-size: 86%;
+}
+
+.ctrl_nrPaginas {
+	display: block;
+	width: 15px;
+	border: 1px solid #000;
+	text-align: center;
+	float: left;
+	cursor: pointer;
+	margin: auto auto auto 3px;
+	font-size: 70%;
+}
+/* conteiner contendo os números */
+#nr_paginas {
+	text-align: center;
+	background-color: #CACACA;
+}
+#pg_info {
+	display: table;
+	background-color: #FF0000;
+	width: 100%;
+}
+.pg_primeira {
+	background-image:url(../img/pg_ico_primeira.gif);
+	margin-right: 2px;
+}
+.pg_anterior {
+	background-image:url(../img/pg_ico_anterior.gif);
+	margin-right: 2px;
+}
+.pg_proxima {
+	background-image:url(../img/pg_ico_proxima.gif);
+}
+.pg_ultima {
+	background-image:url(../img/pg_ico_ultima.gif);
+	margin-right: 2px;
+}
+.ConteinerNrpags{
+	height: 19px;
+	float:left;
+	overflow-y: auto;
+	overflow-x: visible;
+	text-justify: inter-word;
+}
+.pg_proxima, .pg_anterior, .pg_primeira, .pg_ultima, .nr_pagina, .nr_pagina_atual, .nr_pagina_sel, .nr_pagina_ovr {
+	background-position: center;
+	background-repeat: no-repeat;
+	display: block;
+	cursor: pointer;
+	width: 25px;
+	float: left;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	text-align: center;
+	font-size: 90%;
+}
+.pg_carregada {
+	border: 2px solid green;
+	font-size: 65%;
+	margin: 0;
+	padding: 0;
+}
+.pg_carregando {
+	border: 2px solid red;
+}
+.pg_carregada, .pg_carregando {
+	width: 30px;
+	text-align: center;
+}
+
+/* define dimensções e comportamento da imagem do fundo por herança */
+.nr_pagina {
+	border: 1px solid #FFF;
+}
+.nr_pagina_atual {
+	font-weight: bolder;
+	font-weight: bold;
+}
+.nr_pagina_sel {
+	border: 1px solid #FF0000;
+	background-color: #FFFFCC;
+	color: #FF0000;
+	position: inherit;
+}
+.nr_pagina_ovr {
+	background-color: #FFFF98;
+	border: 1px solid #E3B600;
+	position: inherit;
+}

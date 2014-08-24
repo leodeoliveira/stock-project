@@ -2,9 +2,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<!-- META -->
 	<title>{#titulo#}</title>
 
+	<!-- META -->
+	<meta charset="utf8">
 	<meta name="title" content="{#titulo#}" />
 	<meta name="description" content="{#descricao#}" />
 	<meta name="keywords" content="{#palavra_chave#}" />
@@ -48,7 +49,6 @@
 
 
 	<title>Controle de Estoque</title>
-	<meta charset="utf8">
 
 </head>
 
@@ -69,6 +69,7 @@
 		</div>
 	</div>
 </div>
+<input type="hidden" id="path_paginacao" value="{#ROOT_PAGINACAO#}" />
 {include file="footer.tpl"}
 
 </body>
