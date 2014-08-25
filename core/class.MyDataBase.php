@@ -203,8 +203,8 @@ class MyDataBase {
 		$sql_blob = NULL;
 		$sql_update = "";
 		foreach ($conteudo as $campo => $valor) $sql_select .= "$campo,";
-		$sql_select = substr($sql_select,0,-1);
-		$data = new MyQuery(mysqli_query("SELECT FIRST 1 $sql_select FROM $tabela",$this->conn),0,0);
+		$sql_select = "SELECT ".substr($sql_select,0,-1)." FROM " . $tabela . " LIMIT 1";
+		$data = new MyQuery(mysqli_query($this->conn,$sql_select),0,0);
 		foreach ($conteudo as $campo => $valor) {
 			$info = $data->getColInfo($campo);
 			switch ($info['tp']) {
@@ -274,8 +274,8 @@ class MyDataBase {
 				$blobids .= '$sql_blob['.$u.'], ';
 			}
 			$blobids = substr($blobids,0,-2);
-			//eval("mysqli_query(\$sql, $blobids);");
-		} else mysqli_query($sql,$this->conn);
+			eval("mysqli_query(\$this->conn, \$sql, $blobids);");
+		} else mysqli_query($this->conn, $sql);
 		//echo $sql;
 	}
 
