@@ -27,9 +27,6 @@ class MyDataBase {
 	private $user = null;
 	private $pass = null;
 
-	/**
-	 * @var mysqli
-	 */
 	private $conn = null;
 	private $smarty = null;
 	private $util = null;
@@ -56,10 +53,6 @@ class MyDataBase {
 	 */
 	function getId() {
 		return $this->conn;
-	}
-
-	function getLastInsertId() {
-		return $this->conn->insert_id;
 	}
 
 	/**
@@ -113,7 +106,7 @@ class MyDataBase {
 			switch ($info['tp']) {
 				case "BLOB":
 					if ($valor != "") {
-						$sql_blob[] = $this->strToMemo($valor);
+						$sql_blob[] = $this->strToMemo($this->util->trocaacento($valor));
 						$sql_insert .= "$campo, ";
 						$sql_values .= " ? , ";
 					}
@@ -150,10 +143,10 @@ class MyDataBase {
 					if (substr($valor,0,7) == "(SELECT" ||
 					strToUpper(substr($valor,0,9)) == "CASE WHEN") {
 						$sql_insert .= "$campo,";
-						$sql_values .= $valor.",";
+						$sql_values .= strToUpper($valor).",";
 					} elseif ($valor != "") {
 						$sql_insert .= "$campo,";
-						$sql_values .= "'".$valor."',";
+						$sql_values .= "'".strToUpper($this->util->trocaacento($valor))."',";
 					}
 					break;
 			}
@@ -203,8 +196,8 @@ class MyDataBase {
 		$sql_blob = NULL;
 		$sql_update = "";
 		foreach ($conteudo as $campo => $valor) $sql_select .= "$campo,";
-		$sql_select = "SELECT ".substr($sql_select,0,-1)." FROM " . $tabela . " LIMIT 1";
-		$data = new MyQuery(mysqli_query($this->conn,$sql_select),0,0);
+		$sql_select = substr($sql_select,0,-1);
+		$data = new MyQuery(mysqli_query("SELECT FIRST 1 $sql_select FROM $tabela",$this->conn),0,0);
 		foreach ($conteudo as $campo => $valor) {
 			$info = $data->getColInfo($campo);
 			switch ($info['tp']) {
@@ -250,7 +243,7 @@ class MyDataBase {
 					} elseif ($valor == " ") {
 						$sql_update .= "$campo='',";
 					} elseif ($valor != "") {
-						$sql_update .= "$campo='".$valor."',";
+						$sql_update .= "$campo='".strToUpper($this->util->trocaacento($valor))."',";
 					}
 					break;
 			}
@@ -274,8 +267,8 @@ class MyDataBase {
 				$blobids .= '$sql_blob['.$u.'], ';
 			}
 			$blobids = substr($blobids,0,-2);
-			eval("mysqli_query(\$this->conn, \$sql, $blobids);");
-		} else mysqli_query($this->conn, $sql);
+			//eval("mysqli_query(\$sql, $blobids);");
+		} else mysqli_query($sql,$this->conn);
 		//echo $sql;
 	}
 

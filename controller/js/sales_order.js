@@ -9,6 +9,10 @@ orders.initialize();
 
 function onAutocompleted($e, datum) {
     $("#id_product").val(datum.id);
+}
+
+function onAutocompletedCustomer($e, datum) {
+    alert('TestePorra');
     $("#id_customer").val(datum.id);
 }
 
@@ -30,6 +34,6 @@ $(document).ready(function() {
         displayKey : 'value',
         source : orders.ttAdapter()
     })
-    .on('typeahead:selected', onAutocompleted)
-    .on('typeahead:autocompleted', onAutocompleted);
+    .on('typeahead:selected', onAutocompletedCustomer)
+    .on('typeahead:autocompleted', onAutocompletedCustomer);
 });

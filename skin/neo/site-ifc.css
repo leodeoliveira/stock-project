@@ -1,82 +1,76 @@
-.header {
+.header{
 	background-color: #096318;
 	height: 200px;
 }
-
-.header img {
+.header img{
 	margin: 40px;
 }
-
-.text-center {
+.text-center{
 	text-align: center;
 }
-
-.breadcrumb a {
+.breadcrumb a{
 	color: #006600;
 }
-
-input[name='search'] {
+input[name='search']{
 	margin-top: 131px;
 }
 
-#publicacoes h2,h4 {
+
+#publicacoes h2, h4{
 	font-family: Arial, Verdana, Tahoma, Sans-serif;
 	font-weight: bold;
 	font-size: 18pt;
-	text-align: center;
+	text-align:center;
 }
 
-#publicacoes h4 {
+#publicacoes h4{
 	font-size: 11pt;
 }
 
-#logo-ifc {
-	-webkit-transition: all 1s ease-in-out;
-	-moz-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
-	transition: all 1s ease-in-out;
-}
+#logo-ifc{
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 
-#publicacoes hr {
-	border: 2px solid;
 }
-
-#publicacoes p {
+#publicacoes hr{
+	border:2px solid;
+}
+#publicacoes p{
 	text-align: justify;
 	color: #000;
 	font-size: 10pt;
 }
 
-#publicacoes #warnings,#warnings h4 a,#warnings h3 a {
-	color: #FF0000;
+#publicacoes #warnings, #warnings h4 a, #warnings h3 a{
+	color:#FF0000;
+}
+#publicacoes #events, #events h4 a, #events h3 a{
+	color:#660066;
+}
+#publicacoes #editais, #editaiNoticiass h4 a{
+	color:#000;
 }
 
-#publicacoes #events,#events h4 a,#events h3 a {
-	color: #660066;
+#esportes img{
+	width:180px;
+	height:117px;
+	margin:12px;
 }
 
-#publicacoes #editais,#editaiNoticiass h4 a {
-	color: #000;
-}
-
-#esportes img {
-	width: 180px;
-	height: 117px;
-	margin: 12px;
-}
-
-#latest-news p {
+#latest-news p{
 	font-size: 10pt;
 }
 
-.carousel-inner>.item>img {
+.carousel-inner>.item>img{
 	height: 300px;
 	text-align: center;
 }
 
-.table-striped>thead {
-	background-color: #428bca;
-	color: white;
+.table-striped>thead{
+    background-color: #428bca;
+    color: white;
 }
 
 nav {
@@ -85,87 +79,85 @@ nav {
 	border: 1px solid silver;
 	border-bottom: none;
 }
-
-nav ul {
+nav ul{
 	list-style: none;
 	margin: 0;
 	padding: 0;
-}
 
-nav ul li {
+}
+nav ul li{
 	border-bottom: 1px solid silver;
 	padding: 8px;
 }
-
-article p {
+article p{
 	text-align: justify;
 }
 
-article header h2 {
+article header h2{
 	font-weight: bold;
 	color: #003300;
 }
-
-footer {
+footer{
 	background-color: #428bca;
 	border-color: #357ebd;
 	margin-top: 20px;
-	bottom: 0;
-	width: 100%;
+	bottom:0;
+	width:100%;
 }
 
-.form-signin {
-	max-width: 330px;
-	padding: 15px;
-	margin: 0 auto;
+.form-signin
+{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }
-
-.form-signin .form-signin-heading,.form-signin .checkbox {
-	margin-bottom: 10px;
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
 }
-
-.form-signin .checkbox {
-	font-weight: normal;
+.form-signin .checkbox
+{
+    font-weight: normal;
 }
-
-.form-signin .form-control {
-	position: relative;
-	font-size: 16px;
-	height: auto;
-	padding: 10px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
-
-.form-signin .form-control:focus {
-	z-index: 2;
+.form-signin .form-control:focus
+{
+    z-index: 2;
 }
-
-.form-signin input[type="text"] {
-	margin-bottom: -1px;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+.form-signin input[type="text"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
-
-.form-signin input[type="password"] {
-	margin-bottom: 10px;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
-
-.account-wall {
-	margin-top: 20px;
-	padding: 40px 0px 20px 0px;
-	background-color: #f7f7f7;
-	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+.account-wall
+{
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
-
-.login-title {
-	color: #555;
-	font-size: 18px;
-	font-weight: 400;
-	display: block;
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
 }

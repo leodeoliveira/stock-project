@@ -22,7 +22,7 @@ switch ($_REQUEST["ext"]) {
 		$estrutura[1] = array("%[id_product]%", "%[id_product]% - %[description]%", "%[quantity_movement]%");
 		$tabela = $setup->conn->getTabela("SELECT s.id_stock, s.id_product, p.description, s.quantity_movement
 FROM stock s
-INNER JOIN products p ON (p.id_product = s.id_product) ", $estrutura, "stock");
+INNER JOIN products p ON (p.id_product = s.id_product) ", $estrutura, "users");
 		$setup->smarty->assign("tabela", $tabela);
 		$setup->pagina(true,$setup->smarty->fetch("product_stock.tpl"));
 		break;

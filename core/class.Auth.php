@@ -1,8 +1,8 @@
 <?php
 /**
- * Classe que faz a autenticaï¿½ï¿½o do usuï¿½rio
+ * Classe que faz a autenticação do usuário
  *
- * @author Anderson Jordï¿½o Marques <ajm@urbanauta.com.br>
+ * @author Anderson Jordão Marques <ajm@urbanauta.com.br>
  * @version 1.0
  * @since 1.0 - 28/07/2006
  */
@@ -12,19 +12,19 @@ class Auth {
 	private $conn;
 
 	/**
-	 * Funï¿½ï¿½o construtora da classe, recebe o BD, e objeto Crypto.
+	 * Função construtora da classe, recebe o BD, e objeto Crypto.
 	 *
 	 * @access public
-	 * @param resource $conn Variï¿½vel que contï¿½m a conexï¿½o com o banco de dados.
+	 * @param resource $conn Variável que contém a conexão com o banco de dados.
 	 * @return Auth instancia de Auth.
 	 */
-	function Auth($conn, $crypto) {
-		$this->conn = $conn;
-		$this->crypto = $crypto;
+	function Auth(&$conn,&$crypto) {
+		$this->conn = &$conn;
+		$this->crypto = &$crypto;
 	}
 
 	/**
-	 * Funï¿½ï¿½o que recebe cï¿½digo usuï¿½rio e senha, e autentica.
+	 * Função que recebe código usuário e senha, e autentica.
 	 *
 	 * @access public
 	 * @param string $cdUsu
@@ -47,14 +47,14 @@ class Auth {
 			if ($login->getReg("FL_ATIVO") == 'S') {
 				$_SESSION['cdUsuario'] = $login->getReg("CD_USU");
 				$_SESSION['dsUsuario'] = $cdUsu;
-			} else return "Usuï¿½rio Desativado";
-		} else return "Dados invï¿½lidos!";
+			} else return "Usuário Desativado";
+		} else return "Dados inválidos!";
 		$_SESSION['SID'] = session_id();
 		return "";
 	}
 
 	/**
-	 * Funï¿½ï¿½o que recebe cï¿½digo usuï¿½rio e senha, e autentica.
+	 * Função que recebe código usuário e senha, e autentica.
 	 *
 	 * @access public
 	 * @param string $cdUsu
@@ -72,17 +72,17 @@ class Auth {
 			if ($login->getReg("FL_ATIVO") == 'S') {
 				$_SESSION['cdUsuario'] = $login->getReg("CD_REVENDEDOR");
 				$_SESSION['dsUsuario'] = $cdUsu;
-			} else return "Usuï¿½rio Desativado";
-		} else return "Dados invï¿½lidos!";
+			} else return "Usuário Desativado";
+		} else return "Dados inválidos!";
 		$_SESSION['SID'] = session_id();
 		return "";
 	}
 
 	/**
-	 * VERIFICA SESSï¿½O - se logado=cdUsu | se nao false
+	 * VERIFICA SESSÃO - se logado=cdUsu | se nao false
 	 *
 	 * @access public
-	 * @return string Sessï¿½o nï¿½mero ID || boolean.
+	 * @return string Sessão número ID || boolean.
 	 */
 	function chk_sessao() {
 		if(isset($_SESSION['cdUsuario'])) return $_SESSION['cdUsuario'];
@@ -90,7 +90,7 @@ class Auth {
 	}
 
 	/**
-	 * Funï¿½ï¿½o para efetuar o logout.
+	 * Função para efetuar o logout.
 	 *
 	 * @access public
 	 */

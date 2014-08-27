@@ -4,30 +4,15 @@
 {/if}
 
 	{if $paginas}
-	<div id="barra_navegacao_{$cdTela}">
-
-		<div id="ctrl_esq_{$cdTela}" style="float:left;">
-			<span onmouseup="xpaginacao.primeira('{$cdTela}');" class="pg_primeira" id="pg_primeira_{$cdTela}"></span>
-			<span onmouseup="xpaginacao.anterior('{$cdTela}');" class="pg_anterior" id="pg_anterior_{$cdTela}"></span>
-		</div>
-
-		<div id="nrPaginasTop_{$cdTela}" name="nrPaginasTop_{$cdTela}" class="ConteinerNrPaginas" style="width: {if ($nr_paginas > 10)}340{else}$nr_paginas * 34{/if}px;">
-			{section name=linha loop=$paginas}
-				<span onmouseup="xpaginacao.pagina({$paginas[linha]},'{$cdTela}');" onmouseover="xpaginacao.sinaliza_pagina(this);" onmouseout="xpaginacao.sinaliza_pagina(this);" class="{if $paginas[linha] == 1}nr_pagina_sel{else}nr_pagina{/if}" id="pg_{$paginas[linha]}_top_{$cdTela}" style="float: left;">{$paginas[linha]}</span>
-			{/section}
-		</div>
-
-		<div id="ctrl_dir_{$cdTela}" style="float:left;">
-			{if ($nr_paginas > 10)}
-			<button id="ctlr_nrpaginas" class="ctrl_nrPaginas" onMouseUp="xpaginacao.cortinaPaginas('nrPaginasTop_{$cdTela}',true);">+</button>
-			{/if}
-
-			<span onmouseup="xpaginacao.proxima('{$cdTela}');" class="pg_proxima" id="pg_proxima_{$cdTela}"></span>
-			<span onmouseup="xpaginacao.ultima('{$cdTela}');" class="pg_ultima" id="pg_ultima_{$cdTela}"></span>
-			&nbsp;&nbsp;
-			Ir para:&nbsp;<input name="nr_pagina_atual_old_{$cdTela}" id="nr_pagina_atual_old_{$cdTela}" type="hidden" value="1" readonly /><input id="nr_pagina_atual_{$cdTela}" type="text" maxlength="4" class="pg_carregada" onBlur="xpaginacao.vaipara(this.value,'{$cdTela}');" value="1" onKeyPress="return app.apenas_inteiros(event, this);">&nbsp;/&nbsp;<span id="nr_pagina_total_{$cdTela}">{$nr_paginas}</span>
-		</div>
-	</div>
+	<ul class="pagination">
+  		<li><a href="xpaginacao.primeira('{$cdTela}');">&laquo;</a></li>
+  		<li><a href="xpaginacao.anterior('{$cdTela}');"><</a></li>
+  		{section name=linha loop=$paginas}
+  		<li><a href="xpaginacao.pagina({$paginas[linha]},'{$cdTela}','{$objJS}');">{$paginas[linha]}</a></li>
+  		{/section}
+  		<li><a href="xpaginacao.proxima('{$cdTela}');">></a></li>
+  		<li><a href="xpaginacao.ultima('{$cdTela}');">&raquo;</a></li>
+	</ul>
 	{/if}
 
 

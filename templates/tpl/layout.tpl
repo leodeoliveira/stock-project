@@ -1,11 +1,10 @@
 {config_load file="urbanauta.conf"  section='smarty_vars'}
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
 <head>
+	<!-- META -->
 	<title>{#titulo#}</title>
 
-	<!-- META -->
-	<meta charset="utf8">
 	<meta name="title" content="{#titulo#}" />
 	<meta name="description" content="{#descricao#}" />
 	<meta name="keywords" content="{#palavra_chave#}" />
@@ -49,6 +48,7 @@
 
 
 	<title>Controle de Estoque</title>
+	<meta charset="utf8">
 
 </head>
 
@@ -69,7 +69,6 @@
 		</div>
 	</div>
 </div>
-<input type="hidden" id="path_paginacao" value="{#ROOT_PAGINACAO#}" />
 {include file="footer.tpl"}
 
 </body>

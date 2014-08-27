@@ -8,7 +8,6 @@ switch ($_REQUEST["ext"]) {
 		if ($realQuery[1] == "live") {
 			$sql .= "WHERE name LIKE '%".strtoupper($_REQUEST["arquivo"]) ."%'";
 		}
-
 		$result = array();
 
 		$qy = $setup->conn->selectQuery($sql);
@@ -23,7 +22,6 @@ switch ($_REQUEST["ext"]) {
 	case "put":
 		try	{
 			$conteudo["name"] = $_REQUEST["name"];
-			$conteudo["fullname"] = $_REQUEST["fullname"];
 			$conteudo["document"] = $_REQUEST["document"];
 			$conteudo["street"] = $_REQUEST["street"];
 			$conteudo["zip_code"] = $_REQUEST["cep"];
@@ -41,7 +39,7 @@ switch ($_REQUEST["ext"]) {
 		$setup->smarty->assign("message", $message);
 		$estrutura[0] = array("C&oacute;digo", "Nome", "Cidade");
 		$estrutura[1] = array("%[id_customer]%", "%[name]%", "%[city]%");
-		$tabela = $setup->conn->getTabela("SELECT id_customer, name, city FROM customers", $estrutura, "customers");
+		$tabela = $setup->conn->getTabela("SELECT id_customer, name, city FROM customers", $estrutura, "users");
 		$setup->smarty->assign("tabela", $tabela);
 		$setup->pagina(true,$setup->smarty->fetch("customer.tpl"));
 		break;

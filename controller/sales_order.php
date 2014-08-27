@@ -13,7 +13,6 @@ switch ($_REQUEST["ext"]) {
 			$conteudo["date"] = $_REQUEST["date"];
 			$conteudo["delivery_date"] = $_REQUEST["delivery_date"];
 			$setup->conn->insertQuery("sales_order", $conteudo);
-			$id = $setup->conn->getLastInsertId();
 			$message = "sucesso";
 		}
 		catch (Exception $e) {
@@ -22,7 +21,6 @@ switch ($_REQUEST["ext"]) {
 	default:
 		ob_get_clean();
 		$setup->smarty->assign("message", $message);
-		$setup->smarty->assign("id", $id);
 		//$estrutura[0] = array("ID", "Nome", "E-mail");
 		//$estrutura[1] = array("%[id_user]%", "%[name]%", "%[email]%");
 		//$tabela = $setup->conn->getTabela("SELECT id_user, name, email FROM sale_orders", $estrutura, "users");
