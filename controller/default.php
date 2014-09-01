@@ -6,12 +6,20 @@ if (MANUT) {
 	ob_start();
 	$setup->addCSS("skin/bootstrap.css","text/css","screen","StyleSheet","Titi");
 	$setup->addCSS("skin/bootstrap.min.css","text/css","screen","StyleSheet","Titi");
-	$setup->addCSS("skin/css/site-ifc.css","text/css","screen","StyleSheet","Titi");
+	$setup->addCSS("skin/site-ifc.css","text/css","screen","StyleSheet","Titi");
+	$setup->addCSS("skin/grid.css","text/css","screen","StyleSheet","Titi");
+	$setup->addCSS("skin/pagincao.css","text/css","screen","StyleSheet","Titi");
+	$setup->addCSS("skin/sorttable.css","text/css","screen","StyleSheet","Titi");
 
 	$setup->addJS("jquery-2.1.1.min.js");
 	$setup->addJS("bootstrap.min.js");
 	$setup->addJS("typeahead.jquery.min.js");
 	$setup->addJS("bloodhound.min.js");
+	$setup->addJS("browser.js");
+	$setup->addJS("grid.js");
+	$setup->addJS("mascara.js");
+	$setup->addJS("paginacao.js");
+	$setup->addJS("sorttable.js");
 
 	$setup->smarty->assign("include_menu", true);
 

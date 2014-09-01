@@ -36,8 +36,13 @@ switch ($_REQUEST["ext"]) {
 			header("Cache-Control: public, must-revalidate, max-age=". $age . ", s-maxage=". $age);
 			header("Expires: " . str_replace("+0000", "GMT", gmdate("r", time() + $age)));
 		}
-		default:
-			include("controller/default.php");
+	case "php":
+		if (stripos($_REQUEST["pastas"], "/core") !== FALSE) {
+			include("core/grid.php");
 			break;
+		}
+	default:
+		include("controller/default.php");
+		break;
 }
 ?>

@@ -5,13 +5,13 @@
 
 	{if $paginas}
 	<ul class="pagination">
-  		<li><a href="xpaginacao.primeira('{$cdTela}');">&laquo;</a></li>
-  		<li><a href="xpaginacao.anterior('{$cdTela}');"><</a></li>
+  		<li><a href="#" onclick="xpaginacao.primeira('{$cdTela}');">&laquo;</a></li>
+  		<li><a href="#" onclick="xpaginacao.anterior('{$cdTela}');">&lt;</a></li>
   		{section name=linha loop=$paginas}
-  		<li><a href="xpaginacao.pagina({$paginas[linha]},'{$cdTela}','{$objJS}');">{$paginas[linha]}</a></li>
+  		<li><a href="#" onclick="xpaginacao.pagina({$paginas[linha]},'{$cdTela}','{$objJS}');">{$paginas[linha]}</a></li>
   		{/section}
-  		<li><a href="xpaginacao.proxima('{$cdTela}');">></a></li>
-  		<li><a href="xpaginacao.ultima('{$cdTela}');">&raquo;</a></li>
+  		<li><a href="#" onclick="xpaginacao.proxima('{$cdTela}');">&gt;</a></li>
+  		<li><a href="#" onclick="xpaginacao.ultima('{$cdTela}');">&raquo;</a></li>
 	</ul>
 	{/if}
 

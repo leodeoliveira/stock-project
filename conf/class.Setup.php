@@ -34,15 +34,21 @@ class Setup {
 	 * @var smarty_setup
 	 */
 	public $smarty;
-	
+
 	/**
 	 * @var MyDataBase
 	 */
 	public $conn;
 	public $crypto;
+	/**
+	 * @var Auth
+	 */
 	public $auth;
 	public $ojMenu;
 	public $util;
+	/**
+	 * @var UI
+	 */
 	public $UI;
 	public $timeDate;
 
