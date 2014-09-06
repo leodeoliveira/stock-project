@@ -61,6 +61,7 @@ switch ($_REQUEST["ext"]) {
 		$show_page = true;
 		break;
 }
+
 if ($show_page) {
 	ob_get_clean();
 	$setup->smarty->assign("message", $message);
