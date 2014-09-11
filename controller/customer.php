@@ -4,6 +4,7 @@ $message = "";
 
 $id = 0;
 $name = "";
+$fullname = "";
 $document = "";
 $street = "";
 $zip_code = "";
@@ -31,12 +32,13 @@ switch ($_REQUEST["ext"]) {
 		break;
 	case "put":
 		try	{
-			$conteudo["name"] = $_REQUEST["name"];
+			$conteudo["name"] = utf8_decode(utf8_decode($_REQUEST["name"]));
+			$conteudo["fullname"] = utf8_decode(utf8_decode($_REQUEST["fullname"]));
 			$conteudo["document"] = $_REQUEST["document"];
-			$conteudo["street"] = $_REQUEST["street"];
+			$conteudo["street"] = utf8_decode(utf8_decode($_REQUEST["street"]));
 			$conteudo["zip_code"] = $_REQUEST["cep"];
 			$conteudo["address_number"] = $_REQUEST["number"];
-			$conteudo["city"] = $_REQUEST["city"];
+			$conteudo["city"] = utf8_decode(utf8_decode($_REQUEST["city"]));
 			$conteudo["state"] = $_REQUEST["state"];
 
 			if ($_REQUEST["id"] == 0) {
@@ -51,15 +53,16 @@ switch ($_REQUEST["ext"]) {
 		}
 	case "get":
 		if ($_REQUEST["id"] != 0) {
-			$sql = "SELECT id_customer, name, document, street, zip_code, address_number, city, state FROM customers WHERE id_customer = " . htmlspecialchars($_REQUEST["id"]);
+			$sql = "SELECT id_customer, name, fullname, document, street, zip_code, address_number, city, state FROM customers WHERE id_customer = " . htmlspecialchars($_REQUEST["id"]);
 			$qy = $setup->conn->selectQuery($sql);
 			$id = $qy->getReg("id_customer");
-			$name = $qy->getReg("name");
+			$name = utf8_decode(utf8_decode($qy->getReg("name")));
+			$fullname = utf8_decode($qy->getReg("fullname"));
 			$document = $qy->getReg("document");
-			$street = $qy->getReg("street");
+			$street = utf8_decode($qy->getReg("street"));
 			$zip_code = $qy->getReg("zip_code");
 			$address_number = $qy->getReg("address_number");
-			$city = $qy->getReg("city");
+			$city = utf8_decode($qy->getReg("city"));
 			$state = $qy->getReg("state");
 		}
 		$show_page = true;
@@ -73,6 +76,7 @@ if ($show_page) {
 		ob_get_clean();
 		$setup->smarty->assign("id_customer", $id);
 		$setup->smarty->assign("name", $name);
+		$setup->smarty->assign("fullname", $fullname);
 		$setup->smarty->assign("document", $document);
 		$setup->smarty->assign("street", $street);
 		$setup->smarty->assign("zip_code", $zip_code);
@@ -84,6 +88,8 @@ if ($show_page) {
 		$estrutura[1] = array("<a href=\"customer.get?id=%[id_customer]%\">%[id_customer]%</a>", "%[name]%", "%[city]%");
 		$tabela = $setup->conn->getTabela("SELECT id_customer, name, city FROM customers", $estrutura, "customers");
 		$setup->smarty->assign("tabela", $tabela);
+		$setup->smarty->assign("message", $message);
+
 		$setup->pagina(true,$setup->smarty->fetch("customer.tpl"));
 }
 
