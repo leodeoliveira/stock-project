@@ -29,9 +29,9 @@ switch ($_REQUEST["ext"]) {
 		break;
 	case "put":
 		try	{
-			$conteudo["description"] = utf8_decode(utf8_decode($_REQUEST["description"]));
+			$conteudo["description"] = $_REQUEST["description"];
 			$conteudo["unit_value"] =  (float) str_replace(",", ".", $_REQUEST["unit_value"]);
-			$conteudo["note"] = utf8_decode(utf8_decode($_REQUEST["note"]));
+			$conteudo["note"] = $_REQUEST["note"];
 
 			if ($_REQUEST["id"] == 0) {
 				$setup->conn->insertQuery("products", $conteudo);

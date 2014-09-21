@@ -32,13 +32,13 @@ switch ($_REQUEST["ext"]) {
 		break;
 	case "put":
 		try	{
-			$conteudo["name"] = utf8_decode(utf8_decode($_REQUEST["name"]));
-			$conteudo["fullname"] = utf8_decode(utf8_decode($_REQUEST["fullname"]));
+			$conteudo["name"] = $_REQUEST["name"];
+			$conteudo["fullname"] = $_REQUEST["fullname"];
 			$conteudo["document"] = $_REQUEST["document"];
-			$conteudo["street"] = utf8_decode(utf8_decode($_REQUEST["street"]));
+			$conteudo["street"] = $_REQUEST["street"];
 			$conteudo["zip_code"] = $_REQUEST["cep"];
 			$conteudo["address_number"] = $_REQUEST["number"];
-			$conteudo["city"] = utf8_decode(utf8_decode($_REQUEST["city"]));
+			$conteudo["city"] = $_REQUEST["city"];
 			$conteudo["state"] = $_REQUEST["state"];
 
 			if ($_REQUEST["id"] == 0) {
@@ -56,13 +56,13 @@ switch ($_REQUEST["ext"]) {
 			$sql = "SELECT id_customer, name, fullname, document, street, zip_code, address_number, city, state FROM customers WHERE id_customer = " . htmlspecialchars($_REQUEST["id"]);
 			$qy = $setup->conn->selectQuery($sql);
 			$id = $qy->getReg("id_customer");
-			$name = utf8_decode(utf8_decode($qy->getReg("name")));
-			$fullname = utf8_decode($qy->getReg("fullname"));
+			$name = $qy->getReg("name");
+			$fullname = $qy->getReg("fullname");
 			$document = $qy->getReg("document");
-			$street = utf8_decode($qy->getReg("street"));
+			$street = $qy->getReg("street");
 			$zip_code = $qy->getReg("zip_code");
 			$address_number = $qy->getReg("address_number");
-			$city = utf8_decode($qy->getReg("city"));
+			$city = $qy->getReg("city");
 			$state = $qy->getReg("state");
 		}
 		$show_page = true;

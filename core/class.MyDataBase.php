@@ -113,7 +113,7 @@ class MyDataBase {
 			switch ($info['tp']) {
 				case "BLOB":
 					if ($valor != "") {
-						$sql_blob[] = $this->strToMemo($valor);
+						$sql_blob[] = $this->strToMemo(utf8_decode($valor));
 						$sql_insert .= "$campo, ";
 						$sql_values .= " ? , ";
 					}
@@ -153,7 +153,7 @@ class MyDataBase {
 						$sql_values .= $valor.",";
 					} elseif ($valor != "") {
 						$sql_insert .= "$campo,";
-						$sql_values .= "'".$valor."',";
+						$sql_values .= "'".utf8_decode($valor)."',";
 					}
 					break;
 			}
@@ -163,6 +163,7 @@ class MyDataBase {
 		$sql_values = substr($sql_values,0,-1).")";
 		$sql .= $sql_insert . " VALUES " . $sql_values;
 		//tirar echo $sql;
+
 		$blobids = NULL;
 		if ($sql_blob != NULL) {
 			for ($u=0;$u < count($sql_blob);$u++) {
@@ -210,7 +211,7 @@ class MyDataBase {
 			switch ($info['tp']) {
 				case "BLOB":
 					if ($valor != "") {
-						$sql_blob[] = $this->strToMemo($valor);
+						$sql_blob[] = $this->strToMemo(utf8_decode($valor));
 						$sql_update .= "$campo = ? ,";
 					}
 					break;
@@ -250,7 +251,7 @@ class MyDataBase {
 					} elseif ($valor == " ") {
 						$sql_update .= "$campo='',";
 					} elseif ($valor != "") {
-						$sql_update .= "$campo='".$valor."',";
+						$sql_update .= "$campo='".utf8_decode($valor)."',";
 					}
 					break;
 			}
