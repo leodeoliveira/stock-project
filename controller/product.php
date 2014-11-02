@@ -13,7 +13,7 @@ switch ($_REQUEST["ext"]) {
 		$sql = "SELECT id_product, description FROM products ";
 
 		if ($realQuery[1] == "live") {
-			$sql .= "WHERE description LIKE '%".strtoupper($_REQUEST["arquivo"]) ."%'";
+			$sql .= "WHERE UPPER(description) LIKE '%".strtoupper($_REQUEST["arquivo"]) ."%'";
 		}
 
 		$result = array();

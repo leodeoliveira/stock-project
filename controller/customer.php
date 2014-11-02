@@ -17,7 +17,8 @@ switch ($_REQUEST["ext"]) {
 		$sql = "SELECT id_customer, name FROM customers ";
 
 		if ($realQuery[1] == "live") {
-			$sql .= "WHERE name LIKE '%".strtoupper($_REQUEST["arquivo"]) ."%'";
+			$sql .= "WHERE UPPER(name) LIKE '%".strtoupper($_REQUEST["arquivo"]) ."%'
+			or UPPER(fullname) LIKE '%".strtoupper($_REQUEST["arquivo"]) ."%'";
 		}
 		$result = array();
 
