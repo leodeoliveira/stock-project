@@ -12,6 +12,8 @@ $address_number = "";
 $city = "";
 $state = "";
 
+$show_page = false;
+
 switch ($_REQUEST["ext"]) {
 	case "json":
 		$sql = "SELECT id_customer, name FROM customers ";

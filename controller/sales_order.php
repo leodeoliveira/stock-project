@@ -25,6 +25,7 @@ switch ($_REQUEST["ext"]) {
 		//$estrutura[1] = array("%[id_user]%", "%[name]%", "%[email]%");
 		//$tabela = $setup->conn->getTabela("SELECT id_user, name, email FROM sale_orders", $estrutura, "users");
 		//$setup->smarty->assign("tabela", $tabela);
+		$setup->smarty->assign("id", $id);
 		$setup->pagina(true,$setup->smarty->fetch("sales_order.tpl"));
 		break;
 }

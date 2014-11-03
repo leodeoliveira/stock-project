@@ -1,61 +1,75 @@
 <div class="col-md-offset-2">
-<div id="form-trans">
-<form role="form" class="form-horizontal" action="adm/user.put" method="post">
-    <input type="hidden" name="id_product" id="id_product" />
-    <input type="hidden" name="id_customer" id="id_customer" />
-    <input type="hidden" name="id_sales_order" id="id_sales_order" value="{$id}" />
-    <div class="form-group">
-        <label for="customer" class="col-sm-2 control-label">Consumidor *</label>
-            <div class="col-sm-5">
-                <input type="text" autocomplete="off" name="customer"
-                        id="customer" class="form-control"
-                        placeholder="Digite o Nome do Consumidor"
-                        required="required" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="product" class="col-sm-2 control-label">Produto *</label>
-            <div class="col-sm-5">
-                <input type="text" autocomplete="off" name="product"
-                        id="product" class="form-control"
-                        placeholder="Digite a descri&ccedil;&atilde;o do produto..."
-                        required="required" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="payment_method" class="col-sm-2 control-label">Forma de pagamento *</label>
-            <div class="col-sm-5">
-                <select id="payment_method" name="payment_method" class="form-control">
+	<div id="form-trans">
+		<form role="form" class="form-horizontal" action="adm/user.put"
+			method="post">
+			<input type="hidden" name="id_product" id="id_product" /> <input
+				type="hidden" name="id_customer" id="id_customer" /> <input
+				type="hidden" name="id_sales_order" id="id_sales_order"
+				value="{$id}" />
+			<div class="form-group">
+				<label for="customer" class="col-sm-2 control-label">Consumidor
+					*</label>
+				<div class="col-sm-5">
+					<input type="text" autocomplete="off" name="customer" id="customer"
+						class="form-control" placeholder="Digite o Nome do Consumidor"
+						required="required" />
+				</div>
+			</div>
 
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="payment_condition" class="col-sm-2 control-label">Condição de pagamento *</label>
-            <div class="col-sm-5">
-                <select id="payment_condition" name="payment_condition" class="form-control" placeholder="Digite seu telefone..."></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="date" class="col-sm-2 control-label">Data de emissão *</label>
-            <div class="col-sm-5">
-                <input type="date" id="date" name="date" class="form-control" >
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="delivery_date" class="col-sm-2 control-label">Data de entrega *</label>
-            <div class="col-sm-5">
-                <input type="date" id="delivery_date" name="delivery_date" class="form-control" placeholder="Digite seu telefone...">
-            </div>
-        </div>
+			<div class="form-group">
+				<label for="payment_method" class="col-sm-2 control-label">Forma
+					de pagamento *</label>
+				<div class="col-sm-5">
+					<select id="payment_method" name="payment_method"
+						class="form-control">
 
-            <div class="form-group">
-                <div class="col-sm-6 pull-right">
-                    <button class="btn btn-success" type="submit">
-                        Salvar
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="payment_condition" class="col-sm-2 control-label">Condi&ccedil;&atilde;o
+					de pagamento *</label>
+				<div class="col-sm-5">
+					<select id="payment_condition" name="payment_condition"
+						class="form-control" ></select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="date" class="col-sm-2 control-label">Data de
+					emiss&atilde;o *</label>
+				<div class="col-sm-5">
+					<input type="date" id="date" name="date" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="delivery_date" class="col-sm-2 control-label">Data
+					de entrega *</label>
+				<div class="col-sm-5">
+					<input type="date" id="delivery_date" name="delivery_date"
+						class="form-control">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="product" class="col-sm-2 control-label">Produto
+					*</label>
+				<div class="col-sm-5">
+					<input type="text" autocomplete="off" name="product" id="product"
+						class="form-control"
+						placeholder="Digite a descri&ccedil;&atilde;o do produto..."
+						required="required" />
+				</div>
+			</div>
+
+			<div class="form-group">
+			<label for="qtd" class="col-sm-2 control-label">Quantidade *</label>
+			<div class="col-sm-5"><input type="number" id="qtd" name="qtd" /></div></div>
+
+			<div class="form-group">
+				<div class="col-sm-6 pull-right">
+					<button class="btn btn-success" type="submit">Salvar</button>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
