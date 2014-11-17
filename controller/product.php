@@ -10,7 +10,7 @@ $note = "";
 
 switch ($_REQUEST["ext"]) {
 	case "json":
-		$sql = "SELECT id_product, description FROM products ";
+		$sql = "SELECT id_product, description, unit_value FROM products ";
 
 		if ($realQuery[1] == "live") {
 			$sql .= "WHERE UPPER(description) LIKE '%".strtoupper($_REQUEST["arquivo"]) ."%'";
@@ -22,7 +22,8 @@ switch ($_REQUEST["ext"]) {
 		$lin = $qy->getNumLinhas();
 		for ($i = 0; $i < $lin; $i++) {
 			$result[] = (object)array('id' => $qy->getReg("id_product", $i),
-					'value' => $qy->getReg("description", $i));
+					'value' => $qy->getReg("description", $i),
+					'unit' => $qy->getReg("unit_value", $i));
 		}
 
 		echo json_encode($result);
